@@ -803,6 +803,29 @@
   </div>
 </div>
 
+<div id="restoreOverlay" style="display:none; position:fixed; inset:0; background:rgba(6,4,16,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; z-index:300; padding:20px;">
+  <div class="overlayPanel">
+    <h2 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">&#9729;&#65039; Geri Y&#252;kle</h2>
+    <input id="restoreNameInput" type="text" maxlength="14" placeholder="Hesap ismi..." style="margin-bottom: 12px;">
+    <input id="restoreCodeInput" type="text" inputmode="numeric" maxlength="6" placeholder="6 haneli kurtarma kodu..." style="margin-bottom: 18px;">
+    <div class="row">
+      <button class="bigBtn" id="restoreSubmitBtn">Geri Y&#252;kle</button>
+      <button class="bigBtn secondary" id="restoreCancelBtn">Vazge&#231;</button>
+    </div>
+  </div>
+</div>
+
+<div id="renameOverlay" style="display:none; position:fixed; inset:0; background:rgba(6,4,16,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; z-index:300; padding:20px;">
+  <div class="overlayPanel">
+    <h2 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">&#9999;&#65039; &#304;smi De&#287;i&#351;tir</h2>
+    <input id="renameNameInput" type="text" maxlength="14" placeholder="Yeni isim..." style="margin-bottom: 18px;">
+    <div class="row">
+      <button class="bigBtn" id="renameSubmitBtn">Devam Et</button>
+      <button class="bigBtn secondary" id="renameCancelBtn">Vazge&#231;</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // =====================================================================
 // SES S\u0130STEM\u0130
@@ -1966,44 +1989,4 @@ function startMultiplayerLevel(levelIndex) {
 function enterMultiplayerGame(levelIndex, hell, startedAt) {
   hellMode = !!hell;
   mpActive = true;
-  mpLastGameStart = startedAt;
-  mpPositions = {};
-  mpRenderPositions = {};
-  mpLastRenderTime = null;
-  if (currentRoomCode) fbDelete(`rooms/${currentRoomCode}/positions/${encodeURIComponent(activeProfile)}`);
-  currentLevelIndex = levelIndex;
-  loadLevel(levelIndex);
-  showScreen('screenGame');
-  updateWalletDisplays();
-  startMpSync();
-  updateMpBadge();
-}
-
-// Kendi pozisyonunu surekli yaz, diger oyuncularin pozisyonunu gercek zamanli SSE
-// akisiyla dinle (artik her okuma icin ayri bir fetch/round-trip beklemiyoruz).
-function startMpSync() {
-  stopMpSync();
-  mpPushTimer = setInterval(() => {
-    if (!currentRoomCode || !mpActive) return;
-    const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
-    let color = pet.color;
-    if (color === 'rainbow' || color === 'promax') color = '#ffd166';
-    fbPatch(`rooms/${currentRoomCode}/positions`, {
-      [activeProfile]: { x: Math.round(player.x), y: Math.round(player.y), color, levelIndex: currentLevelIndex, ts: Date.now() }
-    });
-  }, 100);
-  startMpPositionsStream();
-  // Ag istegi olmadan, sadece yerelde (mpPositionsRaw uzerinde) taze/eski filtrelemesi yapar.
-  // Uzak cihazin saatine (ts) degil, verinin BURADA alindigi ana (_recv) gore karar verir;
-  // boylece cihazlar arasi saat farki kaynakli titreme/kaybolma yasanmaz.
-  // ONEMLI: bir oyuncu bir sonraki bolume gectiginde, hala eski bolumde olan
-  // digerlerinin "hayaleti" yeni bolumde gorunmesin diye levelIndex de kontrol edilir.
-  // Sadece SU AN bizimle ayni bolumde olan oyuncular ekrana cizilir.
-  mpPollTimer = setInterval(() => {
-    if (!mpActive) return;
-    const now = Date.now();
-    const fresh = {};
-    Object.keys(mpPositionsRaw).forEach(name => {
-      if (name === activeProfile) return;
-      const d = mpPositionsRaw[name];
-      if (!d || now - (d._recv || 0
+  mpLastGameSt

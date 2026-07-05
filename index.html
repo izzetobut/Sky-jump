@@ -486,7 +486,17 @@
     <button class="bigBtn secondary" id="shopBtn">&#128717;&#65039; G&#214;R&#220;N&#220;MLER</button>
     <button class="bigBtn tertiary" id="avatarShopBtn">&#128444;&#65039; &#199;ER&#199;EVE D&#220;KKANI</button>
     <button class="bigBtn secondary" id="profileBtn">&#128100; PROF&#304;L</button>
+    <button class="bigBtn tertiary" id="leaderboardBtn">&#127942; S&#304;RALAMA</button>
     <button class="bigBtn dangerBtn" id="hellModeBtn">&#128293; CEHENNEM MODU</button>
+  </div>
+</div>
+
+<div class="screen" id="screenLeaderboard">
+  <h1>&#127942; Jeton S&#305;ralamas&#305;</h1>
+  <div class="menuBox" style="max-width:420px;">
+    <div id="leaderboardStatus" style="color:var(--text-lo);font-weight:700;font-size:13px;">Y&#252;kleniyor...</div>
+    <div id="leaderboardList" style="width:100%;display:flex;flex-direction:column;gap:8px;"></div>
+    <button class="bigBtn secondary" id="leaderboardRefreshBtn">&#128260; Yenile</button>
   </div>
 </div>
 
@@ -823,7 +833,51 @@ function saveProfiles() {
   } catch (e) {}
 }
 
-function savePlayerData() { saveProfiles(); }
+function savePlayerData() { saveProfiles(); pushScoreToLeaderboard(); }
+
+// =====================================================================
+// ONLINE J\u0130ETON SIRALAMASI (Firebase Realtime Database)
+// =====================================================================
+const FIREBASE_DB_URL = 'https://sky-jump-game-default-rtdb.firebaseio.com';
+let lbPushTimer = null;
+function pushScoreToLeaderboard() {
+  if (!activeProfile || !playerData) return;
+  clearTimeout(lbPushTimer);
+  lbPushTimer = setTimeout(() => {
+    const safeKey = encodeURIComponent(activeProfile);
+    const payload = { name: activeProfile, coins: playerData.coins || 0, updatedAt: Date.now() };
+    fetch(`${FIREBASE_DB_URL}/leaderboard/${safeKey}.json`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  }, 800);
+}
+
+function loadLeaderboard() {
+  const statusEl = document.getElementById('leaderboardStatus');
+  const listEl = document.getElementById('leaderboardList');
+  statusEl.textContent = 'Y\u00fckleniyor...';
+  listEl.innerHTML = '';
+  fetch(`${FIREBASE_DB_URL}/leaderboard.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data) { statusEl.textContent = 'Hen\u00fcz kimse skor g\u00f6ndermedi.'; return; }
+      const entries = Object.values(data).filter(e => e && typeof e.coins === 'number');
+      entries.sort((a, b) => b.coins - a.coins);
+      const top = entries.slice(0, 50);
+      statusEl.textContent = `Toplam ${entries.length} oyuncu`;
+      top.forEach((entry, idx) => {
+        const row = document.createElement('div');
+        const isMe = entry.name === activeProfile;
+        row.style.cssText = `display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;background:${isMe ? 'rgba(124,107,255,0.18)' : 'rgba(0,0,0,0.05)'};border:1px solid ${isMe ? 'var(--accent)' : 'var(--panel-border)'};font-weight:800;font-family:var(--font-display);font-size:14px;`;
+        const medal = idx === 0 ? '\u{1F947}' : idx === 1 ? '\u{1F948}' : idx === 2 ? '\u{1F949}' : `#${idx + 1}`;
+        row.innerHTML = `<span>${medal} ${entry.name}</span><span style="color:var(--gold)">\u{1FA99} ${entry.coins}</span>`;
+        listEl.appendChild(row);
+      });
+    })
+    .catch(() => { statusEl.textContent = 'Y\u00fckleme hatas\u0131, tekrar dene.'; });
+}
 
 function renderProfileChips() {
   const wrap = document.getElementById('profileChips');
@@ -923,6 +977,11 @@ document.getElementById('globalBackBtn').addEventListener('click', () => {
   updateWalletDisplays();
   showScreen('screenMenu');
 });
+document.getElementById('leaderboardBtn').addEventListener('click', () => {
+  showScreen('screenLeaderboard');
+  loadLeaderboard();
+});
+document.getElementById('leaderboardRefreshBtn').addEventListener('click', loadLeaderboard);
 document.getElementById('playBtn').addEventListener('click', () => {
   initAudio();
   hellMode = false;
@@ -2159,4 +2218,3 @@ requestAnimationFrame(gameLoop);
 </script>
 </body>
 </html>
-

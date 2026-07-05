@@ -459,6 +459,25 @@
   }
   #overlayText { font-size: 15px; margin-bottom: 22px; white-space: pre-line; color: rgba(255,255,255,.78); line-height: 1.6; font-weight: 600; }
   #overlay .row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  .listRow{ display:flex; align-items:center; justify-content:space-between; width:100%; padding:10px 14px; border-radius:12px; background:rgba(0,0,0,0.05); border:1px solid var(--panel-border); font-weight:700; font-size:14px; gap:8px; }
+  .miniBtn{ border:none; padding:7px 12px; border-radius:10px; font-weight:800; font-size:12px; color:#fff; cursor:pointer; flex-shrink:0; }
+  .miniBtn.ok{ background:linear-gradient(135deg,#2fce88,#1aa76a); }
+  .miniBtn.no{ background:linear-gradient(135deg,#ff5e6e,#c9384a); }
+  #friendsList, #friendRequestsList{ display:flex; flex-direction:column; gap:8px; width:100%; }
+  .sectionLabel{ font-family:var(--font-display); font-weight:800; font-size:14px; color:var(--text-hi); align-self:flex-start; margin-top:6px; }
+  .chatInputRow{ display:flex; gap:8px; width:100%; }
+  .chatInputRow input{ flex:1; min-width:0; padding:11px 14px; border-radius:12px; border:1.5px solid rgba(0,0,0,.2); font-size:14px; background:rgba(0,0,0,0.05); color:#000; -webkit-text-fill-color:#000; }
+  #roomWorld{ position:relative; width:100%; height:220px; border-radius:18px; background:linear-gradient(160deg, rgba(124,107,255,.12), rgba(255,137,102,.08)); border:1.5px dashed var(--panel-border); overflow:hidden; touch-action:none; }
+  .roomAvatarDot{ position:absolute; width:28px; height:40px; display:flex; flex-direction:column; align-items:center; cursor:grab; user-select:none; }
+  .dotCircle{ width:28px; height:28px; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,.3); border:2px solid #fff; }
+  .dotLabel{ font-size:10px; font-weight:800; color:var(--text-hi); background:rgba(255,255,255,.85); padding:1px 6px; border-radius:8px; margin-top:2px; white-space:nowrap; }
+  #roomChatBox{ display:flex; flex-direction:column; width:100%; gap:8px; }
+  #roomChatMessages{ width:100%; height:150px; overflow-y:auto; background:rgba(0,0,0,0.04); border:1px solid var(--panel-border); border-radius:14px; padding:10px; display:flex; flex-direction:column; gap:6px; }
+  .chatBubble{ font-size:13px; font-weight:600; background:rgba(0,0,0,.05); padding:6px 10px; border-radius:10px; align-self:flex-start; max-width:90%; word-break:break-word; }
+  .chatBubble.me{ align-self:flex-end; background:var(--accent); color:#fff; }
+  .chatBubble.me b{ color:#fff; }
+  #roomCodeLabel{ font-family:var(--font-display); font-weight:800; font-size:22px; letter-spacing:2px; color:var(--accent); }
 </style>
 </head>
 <body>
@@ -487,6 +506,8 @@
     <button class="bigBtn tertiary" id="avatarShopBtn">&#128444;&#65039; &#199;ER&#199;EVE D&#220;KKANI</button>
     <button class="bigBtn secondary" id="profileBtn">&#128100; PROF&#304;L</button>
     <button class="bigBtn tertiary" id="leaderboardBtn">&#127942; S&#304;RALAMA</button>
+    <button class="bigBtn secondary" id="friendsBtn">&#128101; ARKADA&#350;LAR</button>
+    <button class="bigBtn tertiary" id="roomBtn">&#127881; E&#286;LENCE ODASI</button>
     <button class="bigBtn dangerBtn" id="hellModeBtn">&#128293; CEHENNEM MODU</button>
   </div>
 </div>
@@ -510,7 +531,60 @@
     <div id="profileName"></div>
     <div id="profileStats"></div>
     <button class="bigBtn secondary" id="switchProfileBtn">&#128260; Profil De&#287;i&#351;tir</button>
+    <div class="chatInputRow" style="margin-top:4px;">
+      <input id="renameInput" maxlength="14" placeholder="Yeni isim...">
+      <button class="bigBtn" style="min-width:auto;padding:11px 18px;" id="renameBtn">De&#287;i&#351;tir</button>
+    </div>
     <button class="bigBtn dangerBtn" id="resetProfileBtn">&#128465;&#65039; &#304;lerlemeyi S&#305;f&#305;rla</button>
+    <button class="bigBtn dangerBtn" id="deleteAccountBtn">&#9760;&#65039; Hesab&#305; Sil</button>
+  </div>
+</div>
+
+<div class="screen" id="screenFriends">
+  <h1>&#128101; Arkada&#351;lar</h1>
+  <div class="menuBox" style="max-width:420px;">
+    <div class="chatInputRow">
+      <input id="friendNameInput" maxlength="14" placeholder="Arkada&#351; ismi...">
+      <button class="bigBtn" style="min-width:auto;padding:11px 18px;" id="addFriendBtn">Ekle</button>
+    </div>
+    <div class="sectionLabel">Bekleyen &#304;stekler</div>
+    <div id="friendRequestsList"></div>
+    <div class="sectionLabel">Arkada&#351; Listesi</div>
+    <div id="friendsList"></div>
+    <button class="bigBtn secondary" id="friendsRefreshBtn">&#128260; Yenile</button>
+  </div>
+</div>
+
+<div class="screen" id="screenRoomLobby">
+  <h1>&#127881; E&#287;lence Odas&#305;</h1>
+  <div class="menuBox" style="max-width:380px;">
+    <button class="bigBtn secondary" id="createRoomBtn">&#127968; Oda Olu&#351;tur</button>
+    <div class="sectionLabel">veya bir koda kat&#305;l</div>
+    <div class="chatInputRow">
+      <input id="roomCodeInput" maxlength="6" placeholder="Oda Kodu..." style="text-transform:uppercase;">
+      <button class="bigBtn tertiary" style="min-width:auto;padding:11px 18px;" id="joinRoomBtn">Kat&#305;l</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="screenRoom">
+  <h1>&#127881; Oda</h1>
+  <div class="menuBox" style="max-width:460px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:13px;font-weight:700;color:var(--text-lo);">Kod:</span>
+      <span id="roomCodeLabel"></span>
+      <button class="miniBtn ok" id="copyRoomCodeBtn">Kopyala</button>
+    </div>
+    <div id="roomMemberList" style="font-size:13px;font-weight:700;color:var(--text-lo);align-self:flex-start;"></div>
+    <div id="roomWorld"></div>
+    <div id="roomChatBox">
+      <div id="roomChatMessages"></div>
+      <div class="chatInputRow">
+        <input id="roomChatInput" maxlength="200" placeholder="Mesaj yaz...">
+        <button class="bigBtn" style="min-width:auto;padding:11px 18px;" id="sendChatBtn">G&#246;nder</button>
+      </div>
+    </div>
+    <button class="bigBtn dangerBtn" id="leaveRoomBtn">&#128682; Odadan &#199;&#305;k</button>
   </div>
 </div>
 
@@ -879,6 +953,419 @@ function loadLeaderboard() {
     .catch(() => { statusEl.textContent = 'Y\u00fckleme hatas\u0131, tekrar dene.'; });
 }
 
+// =====================================================================
+// ARKADA\u015eLAR, E\u011eLENCE ODASI, isim de\u011fi\u015ftirme, hesap silme (ayn\u0131 Firebase DB)
+// =====================================================================
+function usersRef(name) { return `${FIREBASE_DB_URL}/users/${encodeURIComponent(name)}`; }
+function isOnline(lastSeen) { return !!lastSeen && (Date.now() - lastSeen < 45000); }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+let presenceTimer = null;
+function ensureUserNode() {
+  if (!activeProfile) return;
+  fetch(`${usersRef(activeProfile)}.json`).then(r => r.json()).then(data => {
+    if (!data) {
+      fetch(`${usersRef(activeProfile)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: activeProfile, lastSeen: Date.now(), friends: {}, incoming: {}, outgoing: {}, room: null }) }).catch(() => {});
+    } else {
+      fetch(`${usersRef(activeProfile)}/lastSeen.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Date.now()) }).catch(() => {});
+    }
+  }).catch(() => {});
+  clearInterval(presenceTimer);
+  presenceTimer = setInterval(() => {
+    if (!activeProfile) return;
+    fetch(`${usersRef(activeProfile)}/lastSeen.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Date.now()) }).catch(() => {});
+  }, 20000);
+}
+
+// ---- Arkada\u015flar ----
+function addFriendByName() {
+  const input = document.getElementById('friendNameInput');
+  const target = input.value.trim();
+  if (!target) return;
+  if (target === activeProfile) { showOverlay('Olmaz &#128517;', 'Kendini arkada\u015f olarak ekleyemezsin.', [{ label: 'Tamam', action: () => {} }]); return; }
+  fetch(`${usersRef(target)}.json`).then(r => r.json()).then(data => {
+    if (!data) { showOverlay('Bulunamad\u0131 &#10060;', 'Bu isimde bir oyuncu yok. B\u00fcy\u00fck/k\u00fc\u00e7\u00fck harfe dikkat et.', [{ label: 'Tamam', action: () => {} }]); return; }
+    fetch(`${usersRef(target)}/incoming/${encodeURIComponent(activeProfile)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: 'true' }).catch(() => {});
+    fetch(`${usersRef(activeProfile)}/outgoing/${encodeURIComponent(target)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: 'true' }).catch(() => {});
+    input.value = '';
+    showOverlay('&#304;stek G\u00f6nderildi &#9993;\uFE0F', target + ' adl\u0131 oyuncuya arkada\u015fl\u0131k iste\u011fi g\u00f6nderildi.', [{ label: 'Tamam', action: () => {} }]);
+  }).catch(() => showOverlay('Ba\u011flant\u0131 Hatas\u0131', '\u0130nternetini kontrol et ve tekrar dene.', [{ label: 'Tamam', action: () => {} }]));
+}
+
+function acceptFriendRequest(fromName) {
+  fetch(`${usersRef(activeProfile)}/friends/${encodeURIComponent(fromName)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: 'true' }).catch(() => {});
+  fetch(`${usersRef(fromName)}/friends/${encodeURIComponent(activeProfile)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: 'true' }).catch(() => {});
+  fetch(`${usersRef(activeProfile)}/incoming/${encodeURIComponent(fromName)}.json`, { method: 'DELETE' }).catch(() => {});
+  fetch(`${usersRef(fromName)}/outgoing/${encodeURIComponent(activeProfile)}.json`, { method: 'DELETE' }).catch(() => {});
+  setTimeout(loadFriendsScreen, 500);
+}
+function rejectFriendRequest(fromName) {
+  fetch(`${usersRef(activeProfile)}/incoming/${encodeURIComponent(fromName)}.json`, { method: 'DELETE' }).catch(() => {});
+  fetch(`${usersRef(fromName)}/outgoing/${encodeURIComponent(activeProfile)}.json`, { method: 'DELETE' }).catch(() => {});
+  setTimeout(loadFriendsScreen, 500);
+}
+function removeFriend(friendName) {
+  fetch(`${usersRef(activeProfile)}/friends/${encodeURIComponent(friendName)}.json`, { method: 'DELETE' }).catch(() => {});
+  fetch(`${usersRef(friendName)}/friends/${encodeURIComponent(activeProfile)}.json`, { method: 'DELETE' }).catch(() => {});
+  setTimeout(loadFriendsScreen, 500);
+}
+
+function loadFriendsScreen() {
+  const listEl = document.getElementById('friendsList');
+  const reqEl = document.getElementById('friendRequestsList');
+  listEl.innerHTML = 'Y\u00fckleniyor...';
+  reqEl.innerHTML = '';
+  fetch(`${usersRef(activeProfile)}.json`).then(r => r.json()).then(async data => {
+    if (!data) { listEl.innerHTML = ''; return; }
+    const friends = data.friends ? Object.keys(data.friends) : [];
+    const incoming = data.incoming ? Object.keys(data.incoming) : [];
+    reqEl.innerHTML = '';
+    if (!incoming.length) reqEl.innerHTML = '<div style="color:var(--text-lo);font-size:13px;font-weight:700;">Bekleyen istek yok</div>';
+    incoming.forEach(name => {
+      const row = document.createElement('div');
+      row.className = 'listRow';
+      row.innerHTML = `<span>&#128100; ${escapeHtml(name)}</span>`;
+      const btns = document.createElement('div'); btns.style.display = 'flex'; btns.style.gap = '6px';
+      const okBtn = document.createElement('button'); okBtn.textContent = 'Kabul'; okBtn.className = 'miniBtn ok'; okBtn.onclick = () => acceptFriendRequest(name);
+      const noBtn = document.createElement('button'); noBtn.textContent = 'Reddet'; noBtn.className = 'miniBtn no'; noBtn.onclick = () => rejectFriendRequest(name);
+      btns.appendChild(okBtn); btns.appendChild(noBtn);
+      row.appendChild(btns);
+      reqEl.appendChild(row);
+    });
+    listEl.innerHTML = '';
+    if (!friends.length) listEl.innerHTML = '<div style="color:var(--text-lo);font-size:13px;font-weight:700;">Hen\u00fcz arkada\u015f\u0131n yok</div>';
+    for (const name of friends) {
+      let uData = null;
+      try { uData = await fetch(`${usersRef(name)}.json`).then(r => r.json()); } catch (e) {}
+      const online = uData && isOnline(uData.lastSeen);
+      const inRoom = uData && uData.room;
+      const row = document.createElement('div');
+      row.className = 'listRow';
+      row.innerHTML = `<span>${online ? '&#128994;' : '&#9898;'} ${escapeHtml(name)}${inRoom ? ' <span style="color:var(--text-lo);font-size:11px;">(odada)</span>' : ''}</span>`;
+      const btns = document.createElement('div'); btns.style.display = 'flex'; btns.style.gap = '6px';
+      if (inRoom) {
+        const joinBtn = document.createElement('button'); joinBtn.textContent = 'Odaya Kat\u0131l'; joinBtn.className = 'miniBtn ok';
+        joinBtn.onclick = () => { document.getElementById('roomCodeInput').value = inRoom; showScreen('screenRoomLobby'); joinRoomByCode(); };
+        btns.appendChild(joinBtn);
+      }
+      const delBtn = document.createElement('button'); delBtn.textContent = 'Sil'; delBtn.className = 'miniBtn no'; delBtn.onclick = () => removeFriend(name);
+      btns.appendChild(delBtn);
+      row.appendChild(btns);
+      listEl.appendChild(row);
+    }
+  }).catch(() => { listEl.innerHTML = 'Y\u00fckleme hatas\u0131, tekrar dene.'; });
+}
+
+// ---- E\u011flence Odas\u0131 ----
+let currentRoomId = null;
+let myRoomPos = { x: 150, y: 150 };
+let roomPosDirty = false;
+let lastMsgRenderCount = -1;
+let roomState = { members: {}, messages: {} };
+let roomStreamAbort = null;
+let roomFallbackTimer = null;
+let roomReconnectTimer = null;
+
+function randomRoomCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let s = ''; for (let i = 0; i < 5; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
+}
+
+function createRoom() {
+  const id = randomRoomCode();
+  const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
+  const payload = { id, host: activeProfile, createdAt: Date.now(), members: { [activeProfile]: { x: 150, y: 150, color: pet.color, ts: Date.now() } }, messages: {} };
+  fetch(`${FIREBASE_DB_URL}/rooms/${id}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    .then(() => { fetch(`${usersRef(activeProfile)}/room.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(id) }).catch(() => {}); enterRoom(id); })
+    .catch(() => showOverlay('Hata &#10060;', 'Oda olu\u015fturulamad\u0131, internetini kontrol et.', [{ label: 'Tamam', action: () => {} }]));
+}
+
+function joinRoomByCode() {
+  const code = document.getElementById('roomCodeInput').value.trim().toUpperCase();
+  if (!code) return;
+  fetch(`${FIREBASE_DB_URL}/rooms/${code}.json`).then(r => r.json()).then(data => {
+    if (!data) { showOverlay('Bulunamad\u0131 &#10060;', 'Bu kodda bir oda yok.', [{ label: 'Tamam', action: () => {} }]); return; }
+    const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
+    fetch(`${FIREBASE_DB_URL}/rooms/${code}/members/${encodeURIComponent(activeProfile)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ x: 150, y: 150, color: pet.color, ts: Date.now() }) })
+      .then(() => { fetch(`${usersRef(activeProfile)}/room.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(code) }).catch(() => {}); enterRoom(code); });
+  }).catch(() => showOverlay('Ba\u011flant\u0131 Hatas\u0131', '\u0130nternetini kontrol et ve tekrar dene.', [{ label: 'Tamam', action: () => {} }]));
+}
+
+function enterRoom(id) {
+  currentRoomId = id;
+  lastMsgRenderCount = -1;
+  roomState = { members: {}, messages: {} };
+  document.getElementById('roomCodeLabel').textContent = id;
+  document.getElementById('roomWorld').innerHTML = '';
+  document.getElementById('roomChatMessages').innerHTML = '';
+  showScreen('screenRoom');
+  startRoomStream(id);
+  clearInterval(roomFallbackTimer);
+  roomFallbackTimer = setInterval(() => { if (currentRoomId) refreshRoomOnce(currentRoomId); }, 12000);
+}
+
+function leaveRoom() {
+  stopRoomStream();
+  clearInterval(roomFallbackTimer);
+  roomFallbackTimer = null;
+  clearTimeout(roomReconnectTimer);
+  if (currentRoomId && activeProfile) {
+    fetch(`${FIREBASE_DB_URL}/rooms/${currentRoomId}/members/${encodeURIComponent(activeProfile)}.json`, { method: 'DELETE' }).catch(() => {});
+    fetch(`${usersRef(activeProfile)}/room.json`, { method: 'DELETE' }).catch(() => {});
+  }
+  currentRoomId = null;
+  showScreen('screenMenu');
+}
+
+// Ger\u00e7ek zamanl\u0131 g\u00fcncellemeler i\u00e7in Firebase RTDB'nin SSE (Server-Sent Events) ak\u0131\u015f\u0131na
+// tek bir kal\u0131c\u0131 ba\u011flant\u0131 ile abone oluyoruz. API key/SDK gerekmiyor, mevcut a\u00e7\u0131k REST
+// kurallar\u0131nla \u00e7al\u0131\u015f\u0131yor. Bu, saniyede bir "de\u011fi\u015fti mi?" diye sormaktan \u00e7ok daha az
+// sunucu y\u00fck\u00fc yarat\u0131r \u00e7\u00fcnk\u00fc sadece ger\u00e7ekten bir de\u011fi\u015fiklik oldu\u011funda veri geliyor.
+function startRoomStream(id) {
+  stopRoomStream();
+  const ctrl = new AbortController();
+  roomStreamAbort = ctrl;
+  fetch(`${FIREBASE_DB_URL}/rooms/${id}.json`, { headers: { 'Accept': 'text/event-stream' }, signal: ctrl.signal })
+    .then(res => {
+      if (!res.body) { scheduleRoomReconnect(id); return; }
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      function pump() {
+        reader.read().then(({ done, value }) => {
+          if (done) { scheduleRoomReconnect(id); return; }
+          buffer += decoder.decode(value, { stream: true });
+          const chunks = buffer.split('\n\n');
+          buffer = chunks.pop();
+          chunks.forEach(chunk => {
+            let event = null, dataStr = '';
+            chunk.split('\n').forEach(line => {
+              if (line.startsWith('event: ')) event = line.slice(7).trim();
+              else if (line.startsWith('data: ')) dataStr += line.slice(6);
+            });
+            if (!event || !dataStr) return;
+            try { applyRoomStreamEvent(event, JSON.parse(dataStr)); } catch (e) {}
+          });
+          pump();
+        }).catch(() => { if (currentRoomId === id) scheduleRoomReconnect(id); });
+      }
+      pump();
+    })
+    .catch(() => { if (currentRoomId === id) scheduleRoomReconnect(id); });
+}
+
+function stopRoomStream() {
+  if (roomStreamAbort) { try { roomStreamAbort.abort(); } catch (e) {} roomStreamAbort = null; }
+}
+
+function scheduleRoomReconnect(id) {
+  if (currentRoomId !== id) return;
+  clearTimeout(roomReconnectTimer);
+  roomReconnectTimer = setTimeout(() => { if (currentRoomId === id) startRoomStream(id); }, 3000);
+}
+
+function applyRoomStreamEvent(event, payload) {
+  if (event === 'keep-alive') return;
+  if (event === 'cancel' || event === 'auth_revoked') { scheduleRoomReconnect(currentRoomId); return; }
+  if (event !== 'put' && event !== 'patch') return;
+  const path = payload.path;
+  const data = payload.data;
+  if (path === '/') {
+    if (data === null) { handleRoomClosed(); return; }
+    roomState.members = data.members || {};
+    roomState.messages = data.messages || {};
+  } else {
+    setDeepPath(roomState, path, data, event === 'put');
+  }
+  renderRoomMembers(roomState.members || {});
+  renderRoomChat(roomState.messages || {});
+}
+
+function setDeepPath(root, path, value, isPut) {
+  const segs = path.split('/').filter(Boolean);
+  if (!segs.length) return;
+  let obj = root;
+  for (let i = 0; i < segs.length - 1; i++) {
+    const seg = segs[i];
+    if (!obj[seg] || typeof obj[seg] !== 'object') obj[seg] = {};
+    obj = obj[seg];
+  }
+  const last = segs[segs.length - 1];
+  if (value === null) {
+    delete obj[last];
+  } else if (value && typeof value === 'object' && !Array.isArray(value) && !isPut) {
+    obj[last] = Object.assign({}, obj[last] || {}, value);
+  } else {
+    obj[last] = value;
+  }
+}
+
+function handleRoomClosed() {
+  const closedRoom = currentRoomId;
+  currentRoomId = null;
+  stopRoomStream();
+  clearInterval(roomFallbackTimer);
+  if (document.getElementById('screenRoom').classList.contains('active')) {
+    showOverlay('Oda Kapand\u0131 &#128683;', 'Bu oda art\u0131k mevcut de\u011fil.', [{ label: 'Tamam', action: () => showScreen('screenMenu') }]);
+  }
+}
+
+// A\u011f kopmas\u0131na kar\u015f\u0131 sigorta: stream d\u00fc\u015fse bile birka\u00e7 saniyede bir arka planda tazeler.
+function refreshRoomOnce(id) {
+  fetch(`${FIREBASE_DB_URL}/rooms/${id}.json`).then(r => r.json()).then(data => {
+    if (currentRoomId !== id) return;
+    if (!data) { handleRoomClosed(); return; }
+    roomState.members = data.members || {};
+    roomState.messages = data.messages || {};
+    renderRoomMembers(roomState.members || {});
+    renderRoomChat(roomState.messages || {});
+  }).catch(() => {});
+}
+
+function renderRoomMembers(members) {
+  const world = document.getElementById('roomWorld');
+  const memberListEl = document.getElementById('roomMemberList');
+  memberListEl.textContent = '\u{1F465} ' + Object.keys(members).join(', ');
+  Object.keys(members).forEach(name => {
+    const m = members[name];
+    let dot = world.querySelector(`[data-name="${CSS.escape(name)}"]`);
+    if (!dot) {
+      dot = document.createElement('div');
+      dot.dataset.name = name;
+      dot.className = 'roomAvatarDot';
+      dot.style.left = (m.x || 150) + 'px';
+      dot.style.top = (m.y || 150) + 'px';
+      dot.innerHTML = `<div class="dotCircle"></div><div class="dotLabel">${escapeHtml(name)}</div>`;
+      world.appendChild(dot);
+      if (name === activeProfile) makeDraggable(dot);
+    }
+    dot.querySelector('.dotCircle').style.background = m.color || '#7c6bff';
+    if (name !== activeProfile) {
+      dot.style.left = (m.x || 150) + 'px';
+      dot.style.top = (m.y || 150) + 'px';
+    }
+  });
+  world.querySelectorAll('.roomAvatarDot').forEach(el => {
+    if (!members[el.dataset.name]) el.remove();
+  });
+}
+
+function makeDraggable(dot) {
+  let dragging = false;
+  function start(e) { dragging = true; }
+  function move(e) {
+    if (!dragging) return;
+    const world = document.getElementById('roomWorld');
+    const rect = world.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    let x = point.clientX - rect.left - 14;
+    let y = point.clientY - rect.top - 14;
+    x = Math.max(0, Math.min(rect.width - 28, x));
+    y = Math.max(0, Math.min(rect.height - 28, y));
+    dot.style.left = x + 'px'; dot.style.top = y + 'px';
+    myRoomPos = { x, y }; roomPosDirty = true;
+  }
+  function end() { dragging = false; }
+  dot.addEventListener('mousedown', start);
+  dot.addEventListener('touchstart', start, { passive: true });
+  window.addEventListener('mousemove', move);
+  window.addEventListener('touchmove', move, { passive: true });
+  window.addEventListener('mouseup', end);
+  window.addEventListener('touchend', end);
+}
+
+setInterval(() => {
+  if (currentRoomId && roomPosDirty && activeProfile) {
+    roomPosDirty = false;
+    fetch(`${FIREBASE_DB_URL}/rooms/${currentRoomId}/members/${encodeURIComponent(activeProfile)}.json`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ x: myRoomPos.x, y: myRoomPos.y, ts: Date.now() }) }).catch(() => {});
+  }
+}, 250);
+
+function renderRoomChat(messages) {
+  const keys = Object.keys(messages).sort();
+  if (keys.length === lastMsgRenderCount) return;
+  lastMsgRenderCount = keys.length;
+  const box = document.getElementById('roomChatMessages');
+  box.innerHTML = '';
+  keys.slice(-60).forEach(k => {
+    const m = messages[k];
+    const row = document.createElement('div');
+    row.className = 'chatBubble' + (m.name === activeProfile ? ' me' : '');
+    row.innerHTML = `<b>${escapeHtml(m.name)}:</b> ${escapeHtml(m.text)}`;
+    box.appendChild(row);
+  });
+  box.scrollTop = box.scrollHeight;
+}
+
+function sendRoomChat() {
+  const input = document.getElementById('roomChatInput');
+  const text = input.value.trim();
+  if (!text || !currentRoomId) return;
+  input.value = '';
+  fetch(`${FIREBASE_DB_URL}/rooms/${currentRoomId}/messages.json`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: activeProfile, text: text.slice(0, 200), ts: Date.now() }) }).catch(() => {});
+}
+
+// ---- \u0130sim de\u011fi\u015ftirme ----
+function submitRename() {
+  const input = document.getElementById('renameInput');
+  const newName = input.value.trim();
+  if (!newName) return;
+  if (newName === activeProfile) { input.value = ''; return; }
+  if (profiles[newName]) { showOverlay('Bu isim al\u0131nm\u0131\u015f &#10060;', 'Ba\u015fka bir isim dene.', [{ label: 'Tamam', action: () => {} }]); return; }
+  fetch(`${usersRef(newName)}.json`).then(r => r.json()).then(remoteExisting => {
+    if (remoteExisting) { showOverlay('Bu isim al\u0131nm\u0131\u015f &#10060;', 'Bu isim ba\u015fka bir oyuncu taraf\u0131ndan kullan\u0131l\u0131yor.', [{ label: 'Tamam', action: () => {} }]); return; }
+    doRename(newName);
+  }).catch(() => doRename(newName));
+}
+
+function doRename(newName) {
+  const oldName = activeProfile;
+  profiles[newName] = profiles[oldName];
+  delete profiles[oldName];
+  activeProfile = newName;
+  playerData = profiles[newName];
+  saveProfiles();
+  document.getElementById('renameInput').value = '';
+  renderProfile();
+  updateWalletDisplays();
+  showOverlay('\u0130sim De\u011fi\u015fti &#9989;', 'Art\u0131k ' + newName + ' olarak oynuyorsun.', [{ label: 'Tamam', action: () => {} }]);
+
+  fetch(`${usersRef(oldName)}.json`).then(r => r.json()).then(data => {
+    const friends = data && data.friends ? Object.keys(data.friends) : [];
+    const payload = data ? Object.assign({}, data, { name: newName }) : { name: newName, friends: {}, incoming: {}, outgoing: {} };
+    fetch(`${usersRef(newName)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+    fetch(`${usersRef(oldName)}.json`, { method: 'DELETE' }).catch(() => {});
+    friends.forEach(f => {
+      fetch(`${usersRef(f)}/friends/${encodeURIComponent(oldName)}.json`, { method: 'DELETE' }).catch(() => {});
+      fetch(`${usersRef(f)}/friends/${encodeURIComponent(newName)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: 'true' }).catch(() => {});
+    });
+  }).catch(() => {});
+
+  fetch(`${FIREBASE_DB_URL}/leaderboard/${encodeURIComponent(oldName)}.json`, { method: 'DELETE' }).catch(() => {});
+  fetch(`${FIREBASE_DB_URL}/leaderboard/${encodeURIComponent(newName)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: newName, coins: playerData.coins || 0, updatedAt: Date.now() }) }).catch(() => {});
+}
+
+// ---- Hesap silme ----
+function deleteAccountConfirmed() {
+  const name = activeProfile;
+  fetch(`${usersRef(name)}.json`).then(r => r.json()).then(data => {
+    const friends = data && data.friends ? Object.keys(data.friends) : [];
+    friends.forEach(f => fetch(`${usersRef(f)}/friends/${encodeURIComponent(name)}.json`, { method: 'DELETE' }).catch(() => {}));
+    if (data && data.room) fetch(`${FIREBASE_DB_URL}/rooms/${data.room}/members/${encodeURIComponent(name)}.json`, { method: 'DELETE' }).catch(() => {});
+    fetch(`${usersRef(name)}.json`, { method: 'DELETE' }).catch(() => {});
+    fetch(`${FIREBASE_DB_URL}/leaderboard/${encodeURIComponent(name)}.json`, { method: 'DELETE' }).catch(() => {});
+  }).catch(() => {});
+  delete profiles[name];
+  activeProfile = null;
+  playerData = defaultPlayerData();
+  saveProfiles();
+  try { localStorage.removeItem(ACTIVE_KEY); } catch (e) {}
+  renderProfileChips();
+  document.getElementById('nameInput').value = '';
+  showScreen('screenLogin');
+}
+
 function renderProfileChips() {
   const wrap = document.getElementById('profileChips');
   wrap.innerHTML = '';
@@ -902,6 +1389,7 @@ function doLogin() {
   playerData = profiles[name];
   saveProfiles();
   updateWalletDisplays();
+  ensureUserNode();
   showScreen('screenMenu');
 }
 document.getElementById('loginBtn').addEventListener('click', doLogin);
@@ -975,7 +1463,37 @@ function showScreen(id) {
 document.getElementById('globalBackBtn').addEventListener('click', () => {
   paused = true;
   updateWalletDisplays();
-  showScreen('screenMenu');
+  if (document.getElementById('screenRoom').classList.contains('active')) {
+    leaveRoom();
+  } else {
+    showScreen('screenMenu');
+  }
+});
+document.getElementById('friendsBtn').addEventListener('click', () => { showScreen('screenFriends'); loadFriendsScreen(); });
+document.getElementById('friendsRefreshBtn').addEventListener('click', loadFriendsScreen);
+document.getElementById('addFriendBtn').addEventListener('click', addFriendByName);
+document.getElementById('friendNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addFriendByName(); });
+document.getElementById('roomBtn').addEventListener('click', () => { showScreen('screenRoomLobby'); });
+document.getElementById('createRoomBtn').addEventListener('click', createRoom);
+document.getElementById('joinRoomBtn').addEventListener('click', joinRoomByCode);
+document.getElementById('roomCodeInput').addEventListener('keydown', e => { if (e.key === 'Enter') joinRoomByCode(); });
+document.getElementById('leaveRoomBtn').addEventListener('click', leaveRoom);
+document.getElementById('sendChatBtn').addEventListener('click', sendRoomChat);
+document.getElementById('roomChatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendRoomChat(); });
+document.getElementById('copyRoomCodeBtn').addEventListener('click', () => {
+  if (navigator.clipboard && currentRoomId) navigator.clipboard.writeText(currentRoomId).catch(() => {});
+});
+document.getElementById('renameBtn').addEventListener('click', submitRename);
+document.getElementById('deleteAccountBtn').addEventListener('click', () => {
+  showOverlay('Hesab\u0131 Sil? &#9888;\uFE0F', 'Bu i\u015flem geri al\u0131namaz.\nT\u00fcm ilerleme, arkada\u015flar ve profil kal\u0131c\u0131 olarak silinecek.', [
+    { label: 'Evet, Sil', action: () => {
+      showOverlay('Emin misin? &#128683;', 'Son kez soruyoruz.\nHesab\u0131n\u0131 kal\u0131c\u0131 olarak silmek istedi\u011fine emin misin?', [
+        { label: 'Evet, Kal\u0131c\u0131 Olarak Sil', action: deleteAccountConfirmed },
+        { label: 'Vazge\u00e7', secondary: true, action: () => {} }
+      ]);
+    } },
+    { label: 'Vazge\u00e7', secondary: true, action: () => {} }
+  ]);
 });
 document.getElementById('leaderboardBtn').addEventListener('click', () => {
   showScreen('screenLeaderboard');
@@ -1571,650 +2089,4 @@ function update(dt) {
   }
 
   const d = currentLevel.door;
-  if (player.x + player.size > d.x && player.x < d.x + d.w &&
-      player.y + player.size > d.y && player.y < d.y + d.h) {
-    paused = true;
-    playLevelCompleteSound();
-
-    const completedArr = getCompletedLevels();
-    if (!completedArr.includes(currentLevelIndex)) {
-      completedArr.push(currentLevelIndex);
-    }
-    const currentStars = starsForCoins(score, totalLevelCoins);
-    const starsObj = getLevelStars();
-    const oldStars = (starsObj && starsObj[currentLevelIndex]) || 0;
-    if (currentStars > oldStars) {
-      starsObj[currentLevelIndex] = currentStars;
-    }
-
-    if (currentLevelIndex === getUnlockedLevel() && getUnlockedLevel() < activeLevels().length - 1) {
-      setUnlockedLevel(getUnlockedLevel() + 1);
-    }
-    savePlayerData();
-    applyWorldClass();
-
-    const starString = '&#11088;'.repeat(currentStars) + '&#9734;'.repeat(3 - currentStars);
-    showOverlay('Harika! &#127881;', `B\u00f6l\u00fcm\u00fc tamamlad\u0131n!\nSkorun: ${starString}\n\nToplam Jetonun: &#129689;${playerData.coins}`, [
-      { label: 'Sonraki B\u00f6l\u00fcm', action: () => {
-        if (currentLevelIndex < activeLevels().length - 1) {
-          loadLevel(currentLevelIndex + 1);
-        } else {
-          showOverlay('Tebrikler! &#127942;', 'T\u00fcm b\u00f6l\u00fcmleri ba\u015far\u0131yla bitirdin!', [
-            { label: 'Ana Men\u00fcye D\u00f6n', action: () => showScreen('screenMenu') }
-          ]);
-        }
-      }},
-      { label: 'B\u00f6l\u00fcm Se\u00e7imi', secondary: true, action: () => { showScreen('screenLevels'); renderLevelGrid(); } }
-    ]);
-  }
-}
-
-// ---------- Arkaplan (d\u00fcnya temal\u0131) \u00e7izim yard\u0131mc\u0131lar\u0131 ----------
-function drawCloudPuff(x, y, r) {
-  ctx.beginPath();
-  ctx.arc(x, y, r, 0, Math.PI * 2);
-  ctx.arc(x + r * 0.8, y + 6, r * 0.7, 0, Math.PI * 2);
-  ctx.arc(x - r * 0.8, y + 8, r * 0.6, 0, Math.PI * 2);
-  ctx.fill();
-}
-function drawClouds(camX, w, h) {
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  for (let i = 0; i < 9; i++) {
-    const baseX = i * 260;
-    let cx = ((baseX - camX * 0.15) % (w + 300));
-    if (cx < -150) cx += (w + 300);
-    const cy = 40 + (i % 3) * 46 + Math.sin(i) * 10;
-    drawCloudPuff(cx, cy, 28 + (i % 3) * 9);
-  }
-}
-function drawMountainLayer(offset, baseY, w, h, amp) {
-  ctx.beginPath();
-  ctx.moveTo(-50, h);
-  const step = 80;
-  for (let x = -50; x <= w + 50; x += step) {
-    const xx = x - (offset % step);
-    const yy = baseY - Math.abs(Math.sin((xx + offset) * 0.01)) * amp;
-    ctx.lineTo(xx, yy);
-  }
-  ctx.lineTo(w + 50, h);
-  ctx.closePath();
-  ctx.fill();
-}
-function drawDuskScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(255,244,214,0.9)';
-  ctx.beginPath(); ctx.arc(w * 0.82, h * 0.16, 28, 0, Math.PI * 2); ctx.fill();
-
-  ctx.fillStyle = 'rgba(40,20,70,0.5)';
-  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
-  ctx.fillStyle = 'rgba(25,10,50,0.7)';
-  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
-
-  for (let i = 0; i < 26; i++) {
-    const span = w + 200;
-    let fx = (i * 137 - camX * 0.2) % span;
-    if (fx < -100) fx += span;
-    const fy = h * 0.32 + ((i * 53) % (h * 0.35));
-    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 700 + i));
-    ctx.fillStyle = `rgba(255,214,102,${flick})`;
-    ctx.beginPath(); ctx.arc(fx, fy, 2.4, 0, Math.PI * 2); ctx.fill();
-  }
-}
-function hashRand(seed) {
-  const x = Math.sin(seed * 127.1) * 43758.5453;
-  return x - Math.floor(x);
-}
-function drawCityLayer(camX, w, horizonY, parallax, spacing, minH, maxH, bodyColor, seedOffset, windowColor, windowDensity) {
-  const shift = (camX * parallax) % spacing;
-  const startI = Math.floor((0 - shift) / spacing) - 1;
-  const endI = Math.floor((w - shift) / spacing) + 2;
-  for (let i = startI; i <= endI; i++) {
-    const seed = i + seedOffset;
-    const bw = spacing * (0.62 + hashRand(seed * 3.1) * 0.3);
-    const bx = i * spacing + shift + (spacing - bw) / 2;
-    const bh = minH + hashRand(seed * 7.7) * (maxH - minH);
-    const by = horizonY - bh;
-
-    ctx.fillStyle = bodyColor;
-    ctx.fillRect(bx, by, bw, bh);
-
-    ctx.strokeStyle = windowColor;
-    ctx.globalAlpha = 0.35;
-    ctx.lineWidth = 1;
-    ctx.strokeRect(bx + 0.5, by + 0.5, bw - 1, bh - 1);
-    ctx.globalAlpha = 1;
-
-    if (hashRand(seed * 9.3) > 0.6) {
-      const antX = bx + bw * (0.3 + hashRand(seed * 11) * 0.4);
-      ctx.strokeStyle = windowColor;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(antX, by);
-      ctx.lineTo(antX, by - 10 - hashRand(seed * 13) * 12);
-      ctx.stroke();
-    }
-
-    const winW = 5, winH = 6, gapX = 4, gapY = 6;
-    const cols = Math.max(1, Math.floor((bw - 6) / (winW + gapX)));
-    const rows = Math.max(1, Math.floor((bh - 10) / (winH + gapY)));
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const wSeed = seed * 100 + r * cols + c;
-        if (hashRand(wSeed) < windowDensity) {
-          const wx = bx + 4 + c * (winW + gapX);
-          const wy = by + 6 + r * (winH + gapY);
-          const lit = hashRand(wSeed * 1.7) > 0.4;
-          ctx.fillStyle = lit ? windowColor : 'rgba(255,255,255,0.06)';
-          ctx.globalAlpha = lit ? (0.55 + hashRand(wSeed * 2.3) * 0.4) : 1;
-          ctx.fillRect(wx, wy, winW, winH);
-          ctx.globalAlpha = 1;
-        }
-      }
-    }
-  }
-}
-function drawRetroScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  for (let i = 0; i < 50; i++) {
-    const sx = (i * 97) % w;
-    const sy = (i * 53) % (h * 0.42);
-    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 500 + i));
-    ctx.globalAlpha = flick;
-    ctx.fillRect(sx, sy, 2, 2);
-  }
-  ctx.globalAlpha = 1;
-
-  const horizonY = h * 0.62;
-
-  const moonX = w * 0.72, moonY = h * 0.16, moonR = Math.min(w, h) * 0.13;
-  ctx.save();
-  ctx.shadowColor = 'rgba(0,224,255,0.9)';
-  ctx.shadowBlur = 34;
-  const moonGrad = ctx.createRadialGradient(moonX - moonR * 0.3, moonY - moonR * 0.3, moonR * 0.1, moonX, moonY, moonR);
-  moonGrad.addColorStop(0, '#fffef2');
-  moonGrad.addColorStop(0.55, '#e8f7ff');
-  moonGrad.addColorStop(1, '#9fe8ff');
-  ctx.fillStyle = moonGrad;
-  ctx.beginPath(); ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
-  ctx.save();
-  ctx.beginPath(); ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2); ctx.clip();
-  ctx.strokeStyle = 'rgba(255,46,151,0.35)';
-  ctx.lineWidth = 3;
-  for (let s = -2; s <= 2; s++) {
-    ctx.beginPath();
-    ctx.moveTo(moonX - moonR, moonY + s * (moonR * 0.4));
-    ctx.lineTo(moonX + moonR, moonY + s * (moonR * 0.4));
-    ctx.stroke();
-  }
-  ctx.restore();
-
-  drawCityLayer(camX, w, horizonY - 4, 0.05, 70, h * 0.14, h * 0.32, 'rgba(22,10,46,0.9)', 500, 'rgba(0,224,255,0.55)', 0.4);
-  drawCityLayer(camX, w, horizonY, 0.12, 46, h * 0.16, h * 0.42, 'rgba(8,4,18,0.97)', 5000, 'rgba(255,46,151,0.95)', 0.62);
-
-  ctx.strokeStyle = 'rgba(255,46,151,0.8)';
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(0, horizonY); ctx.lineTo(w, horizonY); ctx.stroke();
-
-  ctx.strokeStyle = 'rgba(0,224,255,0.5)';
-  ctx.lineWidth = 1.5;
-  const vanishX = w / 2;
-  const shift = (camX * 0.4) % 60;
-  for (let i = -14; i <= 14; i++) {
-    const targetX = vanishX + i * 70 - shift * (i === 0 ? 0 : Math.sign(i));
-    ctx.beginPath(); ctx.moveTo(vanishX, horizonY); ctx.lineTo(targetX, h); ctx.stroke();
-  }
-  for (let j = 1; j <= 7; j++) {
-    const t = j / 7;
-    const y = horizonY + (h - horizonY) * t * t;
-    ctx.globalAlpha = 0.15 + t * 0.5;
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-  }
-  ctx.globalAlpha = 1;
-}
-function drawSnowScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(255,255,255,0.5)';
-  drawMountainLayer(camX * 0.03, h * 0.55, w, h, 70);
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  drawMountainLayer(camX * 0.07, h * 0.62, w, h, 100);
-
-  for (let i = 0; i < 40; i++) {
-    const span = w + 200;
-    let sx = (i * 53 - camX * 0.25) % span;
-    if (sx < -20) sx += span;
-    const fallOffset = (performance.now() / 20 + i * 47) % (h + 40);
-    const sy = fallOffset - 20;
-    const size = 1.4 + (i % 3) * 0.6;
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.beginPath(); ctx.arc(sx, sy, size, 0, Math.PI * 2); ctx.fill();
-  }
-}
-
-function drawLavaScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(40,10,6,0.85)';
-  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
-  ctx.fillStyle = 'rgba(20,4,2,0.9)';
-  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
-
-  for (let i = 0; i < 24; i++) {
-    const span = w + 200;
-    let fx = (i * 97 - camX * 0.2) % span;
-    if (fx < -50) fx += span;
-    const fy = h * 0.35 + ((i * 61) % (h * 0.5));
-    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 300 + i));
-    ctx.fillStyle = `rgba(255,${100 + Math.floor(80 * flick)},40,${flick})`;
-    ctx.beginPath(); ctx.arc(fx, fy, 2 + flick, 0, Math.PI * 2); ctx.fill();
-  }
-}
-
-function drawSpaceScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  for (let i = 0; i < 60; i++) {
-    const sx = (i * 83) % w;
-    const sy = (i * 47) % h;
-    const flick = 0.3 + 0.7 * Math.abs(Math.sin(performance.now() / 600 + i));
-    ctx.globalAlpha = flick;
-    ctx.fillRect(sx, sy, 1.5, 1.5);
-  }
-  ctx.globalAlpha = 1;
-
-  const planets = [
-    { r: 26, colorA: '#ff9d4e', colorB: '#7b2ff7', yFrac: 0.22, speed: 0.05 },
-    { r: 14, colorA: '#4ea8ff', colorB: '#00f0ff', yFrac: 0.55, speed: 0.09 }
-  ];
-  planets.forEach((p, idx) => {
-    const span = w + 300;
-    let px = (idx * 400 - camX * p.speed) % span;
-    if (px < -100) px += span;
-    const py = h * p.yFrac;
-    const grad = ctx.createRadialGradient(px - p.r * 0.3, py - p.r * 0.3, p.r * 0.1, px, py, p.r);
-    grad.addColorStop(0, p.colorA);
-    grad.addColorStop(1, p.colorB);
-    ctx.fillStyle = grad;
-    ctx.beginPath(); ctx.arc(px, py, p.r, 0, Math.PI * 2); ctx.fill();
-  });
-}
-
-function drawAuroraPeakScene(camX, w, h) {
-  ctx.fillStyle = 'rgba(30,8,50,0.5)';
-  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
-  ctx.fillStyle = 'rgba(15,3,30,0.75)';
-  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
-
-  const t = performance.now() / 1000;
-  for (let band = 0; band < 3; band++) {
-    ctx.beginPath();
-    for (let x = -50; x <= w + 50; x += 20) {
-      const y = h * 0.22 + band * 22 + Math.sin(x * 0.01 + t + band) * 18;
-      if (x === -50) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    const hue = (t * 40 + band * 60) % 360;
-    ctx.strokeStyle = `hsla(${hue}, 90%, 65%, 0.55)`;
-    ctx.lineWidth = 6;
-    ctx.stroke();
-  }
-
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  for (let i = 0; i < 20; i++) {
-    const span = w + 200;
-    let sx = (i * 91 - camX * 0.15) % span;
-    if (sx < -50) sx += span;
-    const sy = h * 0.15 + ((i * 37) % (h * 0.3));
-    const flick = 0.3 + 0.7 * Math.abs(Math.sin(performance.now() / 500 + i));
-    ctx.globalAlpha = flick;
-    ctx.beginPath(); ctx.arc(sx, sy, 1.6, 0, Math.PI * 2); ctx.fill();
-  }
-  ctx.globalAlpha = 1;
-}
-
-function drawHellScene(camX, w, h) {
-  // K\u0131z\u0131l g\u00fcne\u015f
-  const sunX = w * 0.78;
-  const sunY = h * 0.24;
-  const sunR = Math.min(w, h) * 0.16;
-  const sunGlow = ctx.createRadialGradient(sunX, sunY, sunR * 0.2, sunX, sunY, sunR * 2.2);
-  sunGlow.addColorStop(0, 'rgba(255,120,40,0.55)');
-  sunGlow.addColorStop(1, 'rgba(255,60,20,0)');
-  ctx.fillStyle = sunGlow;
-  ctx.beginPath(); ctx.arc(sunX, sunY, sunR * 2.2, 0, Math.PI * 2); ctx.fill();
-  const sunGrad = ctx.createRadialGradient(sunX - sunR * 0.3, sunY - sunR * 0.3, sunR * 0.1, sunX, sunY, sunR);
-  sunGrad.addColorStop(0, '#ffdd66');
-  sunGrad.addColorStop(0.5, '#ff5a1f');
-  sunGrad.addColorStop(1, '#c8180a');
-  ctx.fillStyle = sunGrad;
-  ctx.beginPath(); ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2); ctx.fill();
-
-  // Uzak volkanik da\u011f siluetleri
-  ctx.fillStyle = 'rgba(45,8,4,0.7)';
-  drawMountainLayer(camX * 0.03, h * 0.5, w, h, 95);
-  ctx.fillStyle = 'rgba(25,4,2,0.85)';
-  drawMountainLayer(camX * 0.07, h * 0.6, w, h, 135);
-
-  // Da\u011f zirvelerinden y\u00fckselen lav/duman parlamas\u0131
-  for (let i = 0; i < 5; i++) {
-    const span = w + 260;
-    let fx = (i * 210 - camX * 0.07) % span;
-    if (fx < -60) fx += span;
-    const fy = h * 0.42;
-    const flick = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 500 + i));
-    ctx.fillStyle = `rgba(255,${90 + Math.floor(60 * flick)},30,${0.5 * flick})`;
-    ctx.beginPath(); ctx.arc(fx, fy, 20 + 8 * flick, 0, Math.PI * 2); ctx.fill();
-  }
-
-  // U\u00e7u\u015fan k\u0131v\u0131lc\u0131mlar
-  for (let i = 0; i < 26; i++) {
-    const span = w + 200;
-    let fx = (i * 87 - camX * 0.2) % span;
-    if (fx < -50) fx += span;
-    const fy = h * 0.3 + ((i * 53) % (h * 0.6));
-    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 280 + i));
-    ctx.fillStyle = `rgba(255,${110 + Math.floor(70 * flick)},40,${flick})`;
-    ctx.beginPath(); ctx.arc(fx, fy, 1.6 + flick, 0, Math.PI * 2); ctx.fill();
-  }
-}
-
-function drawBackground(theme, camX, w, h) {
-  const g = ctx.createLinearGradient(0, 0, 0, h);
-  g.addColorStop(0, theme.skyTop);
-  g.addColorStop(1, theme.skyBottom);
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, w, h);
-
-  if (theme.particle === 'clouds') drawClouds(camX, w, h);
-  else if (theme.particle === 'dusk') drawDuskScene(camX, w, h);
-  else if (theme.particle === 'retro') drawRetroScene(camX, w, h);
-  else if (theme.particle === 'snow') drawSnowScene(camX, w, h);
-  else if (theme.particle === 'lava') drawLavaScene(camX, w, h);
-  else if (theme.particle === 'space') drawSpaceScene(camX, w, h);
-  else if (theme.particle === 'aurora') drawAuroraPeakScene(camX, w, h);
-  else if (theme.particle === 'hell') drawHellScene(camX, w, h);
-}
-
-function draw() {
-  if (!currentLevel) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
-
-  const theme = getTheme(currentLevelIndex);
-  const w = canvas.width, h = canvas.height;
-
-  let camX = player.x - w / 2;
-  const maxCamX = Math.max(0, currentLevel.width - w);
-  if (camX < 0) camX = 0;
-  if (camX > maxCamX) camX = maxCamX;
-
-  const yOffset = Math.max(0, (h - DESIGN_H) / 2);
-
-  drawBackground(theme, camX, w, h);
-
-  ctx.save();
-  ctx.translate(-camX, yOffset);
-
-  currentLevel.platforms.forEach(p => {
-    ctx.fillStyle = theme.platformBody;
-    ctx.fillRect(p.x, p.y, p.w, p.h);
-    ctx.fillStyle = theme.platformTop;
-    ctx.fillRect(p.x, p.y, p.w, 4);
-  });
-
-  ctx.shadowColor = 'rgba(255,60,60,0.7)';
-  ctx.shadowBlur = 6;
-  currentLevel.spikes.forEach(s => {
-    ctx.fillStyle = '#ff4a4a';
-    ctx.beginPath();
-    ctx.moveTo(s.x, s.y + s.h);
-    ctx.lineTo(s.x + s.w / 2, s.y);
-    ctx.lineTo(s.x + s.w, s.y + s.h);
-    ctx.fill();
-  });
-  ctx.shadowBlur = 0;
-
-  ctx.shadowColor = 'rgba(255,209,102,0.9)';
-  ctx.shadowBlur = 8;
-  ctx.fillStyle = '#ffd93d';
-  ctx.strokeStyle = '#e0a800';
-  ctx.lineWidth = 1.5;
-  coins.forEach(c => {
-    if (!c.collected) {
-      ctx.beginPath();
-      ctx.arc(c.x + 8, c.y + 8, 6, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-    }
-  });
-  ctx.shadowBlur = 0;
-
-  const d = currentLevel.door;
-  ctx.shadowColor = theme.doorGlow;
-  ctx.shadowBlur = 18;
-  ctx.fillStyle = theme.doorColor;
-  ctx.fillRect(d.x, d.y, d.w, d.h);
-  ctx.shadowBlur = 0;
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(d.x + 4, d.y + d.h / 2 - 2, 6, 4);
-
-  const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
-  const nowT = performance.now();
-  const cx = player.x + player.size / 2, cy = player.y + player.size / 2;
-  let ballFill, glowColor = null, glowBlur = 0;
-
-  if (pet.color === 'rainbow') {
-    ballFill = `hsl(${rainbowHue}, 85%, 60%)`;
-    glowColor = ballFill; glowBlur = 14;
-  } else if (pet.id === 'stardust') {
-    const t = (Math.sin(nowT / 400) + 1) / 2;
-    ballFill = `rgb(${Math.round(225 + 30 * t)}, ${Math.round(225 + 30 * t)}, 255)`;
-    glowColor = 'rgba(255,255,255,0.95)';
-    glowBlur = 14 + 8 * t;
-  } else if (pet.id === 'cosmic') {
-    const hue = 255 + Math.sin(nowT / 550) * 45;
-    ballFill = `hsl(${hue}, 70%, 58%)`;
-    glowColor = `hsl(${hue}, 90%, 62%)`;
-    glowBlur = 16;
-  } else if (pet.id === 'aurora') {
-    const hue = 150 + Math.sin(nowT / 500) * 40;
-    ballFill = `hsl(${hue}, 90%, 55%)`;
-    glowColor = `hsl(${hue}, 100%, 65%)`;
-    glowBlur = 16;
-  } else if (pet.id === 'phoenix') {
-    const t = (Math.sin(nowT / 200) + 1) / 2;
-    ballFill = `rgb(255, ${Math.round(80 + 100 * t)}, ${Math.round(20 * t)})`;
-    glowColor = 'rgba(255,120,30,0.9)';
-    glowBlur = 18 + 8 * t;
-  } else if (pet.id === 'galaxy') {
-    const hue = 260 + Math.sin(nowT / 450) * 50;
-    ballFill = `hsl(${hue}, 75%, 45%)`;
-    glowColor = `hsl(${hue}, 90%, 60%)`;
-    glowBlur = 16;
-  } else if (pet.id === 'voidking') {
-    const t = (Math.sin(nowT / 300) + 1) / 2;
-    ballFill = `rgb(${Math.round(20 + 30 * t)}, ${Math.round(5 + 10 * t)}, ${Math.round(40 + 60 * t)})`;
-    glowColor = 'rgba(176,107,255,0.8)';
-    glowBlur = 14 + 10 * t;
-  } else if (pet.id === 'promax') {
-    const hue = (nowT / 4) % 360;
-    ballFill = `hsl(${hue}, 100%, 60%)`;
-    glowColor = `hsl(${(hue + 180) % 360}, 100%, 65%)`;
-    glowBlur = 26 + 12 * Math.sin(nowT / 120);
-  } else {
-    ballFill = pet.color;
-  }
-
-  if (pet.id === 'promax' && !paused) {
-    ultraTrail.push({ x: cx, y: cy, born: nowT, size: player.size * (0.55 + Math.random() * 0.25) });
-  }
-  const TRAIL_LIFESPAN = 420;
-  ultraTrail = ultraTrail.filter(p => nowT - p.born < TRAIL_LIFESPAN);
-  ultraTrail.forEach((p, idx) => {
-    const age = nowT - p.born;
-    const lifeRatio = 1 - age / TRAIL_LIFESPAN;
-    if (lifeRatio <= 0) return;
-    const hue = (nowT / 3 + idx * 24) % 360;
-    ctx.save();
-    ctx.globalAlpha = lifeRatio * 0.85;
-    ctx.shadowColor = `hsl(${hue}, 100%, 65%)`;
-    ctx.shadowBlur = 14 * lifeRatio;
-    ctx.fillStyle = `hsl(${hue}, 100%, 62%)`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, (p.size / 2) * lifeRatio, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  });
-
-  ctx.save();
-  if (glowColor) { ctx.shadowColor = glowColor; ctx.shadowBlur = glowBlur; }
-  ctx.fillStyle = ballFill;
-  ctx.beginPath();
-  ctx.arc(cx, cy, player.size / 2, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
-
-  if (pet.id === 'stardust') {
-    for (let k = 0; k < 4; k++) {
-      const angle = nowT / 300 + k * (Math.PI / 2);
-      const dist = player.size * 0.85;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist * 0.55;
-      const tw = 0.35 + 0.65 * Math.abs(Math.sin(nowT / 150 + k));
-      ctx.fillStyle = `rgba(255,255,255,${tw})`;
-      ctx.beginPath(); ctx.arc(px, py, 1.6, 0, Math.PI * 2); ctx.fill();
-    }
-  } else if (pet.id === 'cosmic') {
-    for (let k = 0; k < 3; k++) {
-      const angle = nowT / 500 + k * ((Math.PI * 2) / 3);
-      const dist = player.size * 0.8;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
-      const hue = 255 + Math.sin(nowT / 550 + k) * 45;
-      ctx.fillStyle = `hsl(${hue}, 80%, 65%)`;
-      ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI * 2); ctx.fill();
-    }
-  } else if (pet.id === 'galaxy' || pet.id === 'voidking') {
-    for (let k = 0; k < 3; k++) {
-      const angle = nowT / 450 + k * ((Math.PI * 2) / 3);
-      const dist = player.size * 0.9;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
-      ctx.fillStyle = 'rgba(176,107,255,0.85)';
-      ctx.beginPath(); ctx.arc(px, py, 1.8, 0, Math.PI * 2); ctx.fill();
-    }
-  } else if (pet.id === 'phoenix' || pet.id === 'aurora') {
-    for (let k = 0; k < 3; k++) {
-      const angle = nowT / 260 + k * ((Math.PI * 2) / 3);
-      const dist = player.size * 0.75;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist * 0.6 + 4;
-      ctx.fillStyle = pet.id === 'phoenix' ? 'rgba(255,150,30,0.85)' : 'rgba(120,255,220,0.85)';
-      ctx.beginPath(); ctx.arc(px, py, 1.8, 0, Math.PI * 2); ctx.fill();
-    }
-  } else if (pet.id === 'promax') {
-    for (let k = 0; k < 8; k++) {
-      const angle = nowT / 90 + k * (Math.PI * 2 / 8);
-      const dist = player.size * 1.15;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
-      const hue = (nowT / 3 + k * 45) % 360;
-      ctx.fillStyle = `hsl(${hue}, 100%, 65%)`;
-      ctx.beginPath(); ctx.arc(px, py, 2.6, 0, Math.PI * 2); ctx.fill();
-    }
-  }
-
-  ctx.fillStyle = '#fff';
-  ctx.beginPath();
-  ctx.arc(player.x + player.size / 2 + (player.vx >= 0 ? 3 : -3), player.y + player.size / 3 + 1, 3, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = '#000';
-  ctx.beginPath();
-  ctx.arc(player.x + player.size / 2 + (player.vx >= 0 ? 4 : -2), player.y + player.size / 3 + 1, 1.2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.restore();
-}
-
-let lastTime = performance.now();
-function gameLoop(now) {
-  let dt = now - lastTime;
-  if (dt > 100) dt = 16;
-  lastTime = now;
-
-  update(dt);
-  draw();
-  requestAnimationFrame(gameLoop);
-}
-
-// =====================================================================
-// ADM\u0130NL\u0130K S\u0130STEM\u0130 (gizli kod ile t\u00fcm i\u00e7eri\u011fi a\u00e7ma)
-// =====================================================================
-const ADMIN_CODE = '1837368';
-let titleTapCount = 0;
-let titleTapTimer = null;
-function registerTitleTap() {
-  titleTapCount++;
-  clearTimeout(titleTapTimer);
-  titleTapTimer = setTimeout(() => { titleTapCount = 0; }, 1500);
-  if (titleTapCount >= 5) {
-    titleTapCount = 0;
-    openAdminOverlay();
-  }
-}
-document.querySelectorAll('.neonTitle').forEach(el => {
-  el.style.cursor = 'pointer';
-  el.addEventListener('click', registerTitleTap);
-});
-
-function openAdminOverlay() {
-  const input = document.getElementById('adminCodeInput');
-  input.value = '';
-  document.getElementById('adminOverlay').style.display = 'flex';
-  setTimeout(() => input.focus(), 60);
-}
-function closeAdminOverlay() {
-  document.getElementById('adminOverlay').style.display = 'none';
-}
-document.getElementById('adminCancelBtn').addEventListener('click', closeAdminOverlay);
-document.getElementById('adminSubmitBtn').addEventListener('click', submitAdminCode);
-document.getElementById('adminCodeInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitAdminCode(); });
-
-function submitAdminCode() {
-  const val = document.getElementById('adminCodeInput').value.trim();
-  closeAdminOverlay();
-  if (!activeProfile || !playerData) {
-    showOverlay('Giri\u015f Gerekli &#128274;', '\u00d6nce bir profille giri\u015f yapmal\u0131s\u0131n.', [{ label: 'Tamam', action: () => {} }]);
-    return;
-  }
-  if (val === ADMIN_CODE) {
-    unlockEverything();
-  } else {
-    showOverlay('Ge\u00e7ersiz Kod &#10060;', 'Girdi\u011fin kod yanl\u0131\u015f.', [{ label: 'Tamam', action: () => {} }]);
-  }
-}
-
-function unlockEverything() {
-  playerData.unlockedLevel = levels.length - 1;
-  playerData.completedLevels = levels.map((_, i) => i);
-  if (!playerData.levelStars) playerData.levelStars = {};
-  levels.forEach((_, i) => { playerData.levelStars[i] = 3; });
-  playerData.hellUnlockedLevel = hellLevels.length - 1;
-  playerData.hellCompletedLevels = hellLevels.map((_, i) => i);
-  if (!playerData.hellLevelStars) playerData.hellLevelStars = {};
-  hellLevels.forEach((_, i) => { playerData.hellLevelStars[i] = 3; });
-  playerData.ownedPets = PETS.map(p => p.id);
-  playerData.ownedFrames = AVATAR_FRAMES.map(f => f.id);
-  savePlayerData();
-  updateWalletDisplays();
-  playLevelCompleteSound();
-  showOverlay('Admin Modu Aktif &#9989;', 'T\u00fcm b\u00f6l\u00fcmler, t\u00fcm g\u00f6r\u00fcn\u00fcmler ve t\u00fcm \u00e7er\u00e7eveler hesab\u0131na a\u00e7\u0131ld\u0131!', [{ label: 'Harika! &#127881;', action: () => {} }]);
-}
-
-loadProfiles();
-if (activeProfile && profiles[activeProfile]) {
-  playerData = profiles[activeProfile];
-  updateWalletDisplays();
-  showScreen('screenMenu');
-} else {
-  renderProfileChips();
-  showScreen('screenLogin');
-}
-applyWorldClass();
-
-requestAnimationFrame(gameLoop);
-</script>
-</body>
-</html>
+  if (playe

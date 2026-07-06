@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title data-i18n="page_title">Sky Jump: Top Macerası</title>
+<title>Sky Jump: Top Macerası</title>
 <meta name="theme-color" content="#0b0b1f">
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
@@ -129,76 +129,6 @@
     box-shadow: 0 8px 20px rgba(0,0,0,.4);
   }
   #soundToggle:active { transform: scale(0.9); }
-
-  #settingsBtn {
-    position: fixed; top: 14px; right: 70px; width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(18,15,38,0.65); color: white; font-size: 20px; border: 1.5px solid rgba(255,255,255,.22);
-    backdrop-filter: blur(12px);
-    display: flex; align-items: center; justify-content: center; z-index: 100;
-    user-select: none; -webkit-user-select: none;
-    box-shadow: 0 8px 20px rgba(0,0,0,.4);
-  }
-  #settingsBtn:active { transform: scale(0.9) rotate(25deg); }
-
-  #settingsOverlay {
-    position: fixed; inset: 0; background: rgba(6,4,16,0.82); backdrop-filter: blur(6px);
-    display: none; align-items: center; justify-content: center;
-    z-index: 260; padding: 20px;
-  }
-  .settingsPanel {
-    background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
-    border: 1px solid rgba(255,255,255,.18); border-radius: 26px; padding: 28px 22px;
-    max-width: 380px; width: 100%;
-    backdrop-filter: blur(24px); box-shadow: 0 30px 80px rgba(0,0,0,.6);
-  }
-  .settingsPanelHeader {
-    display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;
-  }
-  .settingsPanelHeader h2 {
-    font-family: var(--font-display); font-size: 22px; font-weight: 800;
-    background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  #settingsCloseBtn {
-    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.22);
-    background: rgba(255,255,255,.08); color: #fff; font-size: 18px; line-height: 1;
-    display: flex; align-items: center; justify-content: center; cursor: pointer;
-  }
-  #settingsCloseBtn:active { transform: scale(0.9); }
-  .settingsGroup { margin-bottom: 24px; }
-  .settingsGroup:last-child { margin-bottom: 4px; }
-  .settingsLabel {
-    font-family: var(--font-display); font-weight: 800; font-size: 13.5px; color: rgba(255,255,255,.85);
-    margin-bottom: 10px; letter-spacing: .3px; display: flex; justify-content: space-between; align-items: center;
-  }
-  .settingsHint { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.4); }
-  .snapRowWrap { position: relative; }
-  .snapRowWrap::before, .snapRowWrap::after {
-    content: ''; position: absolute; top: 0; bottom: 0; width: 26px; z-index: 2; pointer-events: none;
-  }
-  .snapRowWrap::before { left: 0; background: linear-gradient(to right, rgba(15,12,32,.55), transparent); }
-  .snapRowWrap::after { right: 0; background: linear-gradient(to left, rgba(15,12,32,.55), transparent); }
-  .snapRow {
-    display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; padding: 6px 0; scrollbar-width: none;
-  }
-  .snapRow::-webkit-scrollbar { display: none; }
-  .snapItem {
-    flex: 0 0 auto; scroll-snap-align: center; min-width: 76px; height: 52px;
-    border-radius: 16px; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-weight: 700; font-size: 15px; color: rgba(255,255,255,.55);
-    background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12);
-    transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-    user-select: none; -webkit-user-select: none;
-  }
-  .snapRow.volumeRow .snapItem { min-width: 64px; }
-  .snapItem.selected {
-    color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent;
-    transform: scale(1.08); box-shadow: 0 8px 20px var(--accent-glow);
-  }
-  .snapCenterMark {
-    position: absolute; left: 50%; top: -2px; bottom: -2px; width: 2px; transform: translateX(-50%);
-    background: rgba(255,255,255,.28); border-radius: 2px; z-index: 1; pointer-events: none;
-  }
 
   #globalBackBtn {
     position: fixed; top: 14px; left: 14px; background: rgba(18,15,38,0.65); color: white;
@@ -529,111 +459,20 @@
   }
   #overlayText { font-size: 15px; margin-bottom: 22px; white-space: pre-line; color: rgba(255,255,255,.78); line-height: 1.6; font-weight: 600; }
   #overlay .row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-
-  /* ================= ARKADA\u015eLAR / ODALAR / CHAT ================= */
-  .listCard {
-    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    background: rgba(0,0,0,0.05); border: 1px solid var(--panel-border); border-radius: 14px;
-    padding: 10px 14px;
-  }
-  .listCard .lcName { font-weight: 800; font-family: var(--font-display); font-size: 14px; display:flex; align-items:center; gap:8px; }
-  .listCard .lcSub { font-size: 11px; color: var(--text-lo); font-weight: 700; }
-  .miniBtn {
-    border: none; padding: 8px 14px; border-radius: 10px; font-weight: 800; font-size: 12px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-family: var(--font-body);
-    white-space: nowrap;
-  }
-  .miniBtn.secondary { background: linear-gradient(135deg, #2fce88, #1aa76a); }
-  .miniBtn.danger { background: linear-gradient(135deg, #ff5e6e, #c9384a); }
-  .miniBtn.ghost { background: rgba(0,0,0,0.08); color: #000; }
-  .tabRow { display: flex; gap: 8px; margin-bottom: 4px; width: 100%; max-width: 420px; }
-  .tabBtn {
-    flex: 1; padding: 10px 8px; border-radius: 12px; border: 1.5px solid var(--panel-border);
-    background: rgba(0,0,0,0.04); font-weight: 800; font-size: 12.5px; font-family: var(--font-display); color: var(--text-lo);
-  }
-  .tabBtn.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; }
-  .emptyHint { color: var(--text-lo); font-weight: 700; font-size: 13px; text-align: center; padding: 10px; }
-  #friendAddRow, #roomJoinRow { display: flex; gap: 8px; width: 100%; max-width: 320px; }
-  #friendAddRow input, #roomJoinRow input {
-    flex: 1; padding: 12px 14px; border-radius: 12px; border: 1.5px solid rgba(0,0,0,.2); font-size: 15px;
-    text-align: center; font-family: inherit; outline: none; background: rgba(0,0,0,0.05) !important; color:#000 !important;
-    -webkit-text-fill-color:#000 !important; text-transform: uppercase;
-  }
-  #roomCodeBig {
-    font-family: var(--font-display); font-weight: 800; font-size: 30px; letter-spacing: 6px;
-    background: rgba(0,0,0,0.06); border: 1.5px dashed var(--accent); border-radius: 16px;
-    padding: 10px 20px; color: var(--accent);
-  }
-  #roomMembersList { width: 100%; display: flex; flex-direction: column; gap: 6px; max-height: 140px; overflow-y: auto; }
-  #chatWrap {
-    width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 10px;
-    background: rgba(0,0,0,0.03); border: 1px solid var(--panel-border); border-radius: 18px; padding: 12px;
-  }
-  #chatMessages { height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 2px; }
-  .chatMsg { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-size: 13.5px; font-weight: 600; line-height: 1.35; word-break: break-word; }
-  .chatMsg.me { align-self: flex-end; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-bottom-right-radius: 4px; }
-  .chatMsg.other { align-self: flex-start; background: rgba(0,0,0,0.08); color: #000; border-bottom-left-radius: 4px; }
-  .chatMsg.system { align-self: center; background: rgba(0,0,0,0.05); color: var(--text-lo); font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
-  .chatMsg .chatName { display:block; font-size: 10px; font-weight: 800; opacity: .75; margin-bottom: 2px; }
-  #chatInputRow { display: flex; gap: 8px; }
-  #chatInput {
-    flex: 1; padding: 11px 14px; border-radius: 14px; border: 1.5px solid rgba(0,0,0,.2); font-size: 14px;
-    font-family: inherit; outline: none; background: rgba(0,0,0,0.05) !important; color:#000 !important; -webkit-text-fill-color:#000 !important;
-  }
-  #chatSendBtn {
-    border: none; width: 46px; height: 46px; border-radius: 14px; font-size: 18px; color: #fff;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-  .badgeDot {
-    display:inline-block; min-width:16px; height:16px; padding:0 4px; border-radius:8px; background:#ff5e6e; color:#fff;
-    font-size:10px; font-weight:800; line-height:16px; text-align:center; margin-left:4px;
-  }
 </style>
 </head>
 <body>
 
 <div id="soundToggle">&#128266;</div>
-<div id="settingsBtn">&#9881;&#65039;</div>
 <div id="globalBackBtn">&#9664;</div>
-
-<div id="settingsOverlay">
-  <div class="settingsPanel">
-    <div class="settingsPanelHeader">
-      <h2>&#9881;&#65039; <span data-i18n="settings_title">Ayarlar</span></h2>
-      <div id="settingsCloseBtn">&times;</div>
-    </div>
-    <div class="settingsGroup">
-      <div class="settingsLabel"><span data-i18n="settings_fps">Kare Hızı (FPS)</span><span class="settingsHint" data-i18n="settings_hint">kaydır &amp; seç</span></div>
-      <div class="snapRowWrap">
-        <div class="snapCenterMark"></div>
-        <div class="snapRow" id="fpsRow"></div>
-      </div>
-    </div>
-    <div class="settingsGroup">
-      <div class="settingsLabel"><span data-i18n="settings_volume">Ses Seviyesi</span><span class="settingsHint" data-i18n="settings_hint">kaydır &amp; seç</span></div>
-      <div class="snapRowWrap">
-        <div class="snapCenterMark"></div>
-        <div class="snapRow volumeRow" id="volumeRow"></div>
-      </div>
-    </div>
-    <div class="settingsGroup">
-      <div class="settingsLabel"><span data-i18n="settings_lang">Dil</span><span class="settingsHint" data-i18n="settings_hint">kaydır &amp; seç</span></div>
-      <div class="snapRowWrap">
-        <div class="snapCenterMark"></div>
-        <div class="snapRow" id="langRow"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="screen active" id="screenLogin">
   <h1 class="neonTitle">&#127918; Sky Jump</h1>
-  <div class="subtitle" data-i18n="login_subtitle">200 B&#214;L&#220;M &#8226; EFSANEV&#304; PETLER</div>
+  <div class="subtitle">200 B&#214;L&#220;M &#8226; EFSANEV&#304; PETLER</div>
   <div class="menuBox">
-    <p style="color:var(--text-lo);font-weight:800;font-size:14px;" data-i18n="login_prompt">&#304;smini yaz ve ba&#351;la</p>
-    <input id="nameInput" maxlength="14" placeholder="Ad&#305;n..." data-i18n-placeholder="login_name_placeholder">
-    <button class="bigBtn" id="loginBtn" data-i18n="login_btn">G&#304;R&#304;&#350; YAP</button>
-    <button class="bigBtn tertiary" id="restoreBackupBtn" style="margin-top:4px;">&#9729;&#65039; Kurtarma Kodu ile Geri Y&#252;kle</button>
+    <p style="color:var(--text-lo);font-weight:800;font-size:14px;">&#304;smini yaz ve ba&#351;la</p>
+    <input id="nameInput" maxlength="14" placeholder="Ad&#305;n...">
+    <button class="bigBtn" id="loginBtn">G&#304;R&#304;&#350; YAP</button>
     <div id="profileChips"></div>
   </div>
 </div>
@@ -641,106 +480,32 @@
 <div class="screen" id="screenMenu">
   <h1 class="neonTitle">&#127918; Sky Jump</h1>
   <div id="playerNameTag">&#128100; <span id="playerNameMenu"></span></div>
-  <div class="walletDisplay">&#129689; <span id="walletMenu">0</span> <span data-i18n="coin_label">Jeton</span></div>
+  <div class="walletDisplay">&#129689; <span id="walletMenu">0</span> Jeton</div>
   <div class="menuBox">
-    <button class="bigBtn" id="playBtn" data-i18n="menu_play">&#9654; OYNA</button>
-    <button class="bigBtn secondary" id="shopBtn" data-i18n="menu_shop">&#128717;&#65039; G&#214;R&#220;N&#220;MLER</button>
-    <button class="bigBtn tertiary" id="avatarShopBtn" data-i18n="menu_avatar_shop">&#128444;&#65039; &#199;ER&#199;EVE D&#220;KKANI</button>
-    <button class="bigBtn secondary" id="profileBtn" data-i18n="menu_profile">&#128100; PROF&#304;L</button>
-    <button class="bigBtn tertiary" id="leaderboardBtn" data-i18n="menu_leaderboard">&#127942; S&#304;RALAMA</button>
-    <button class="bigBtn secondary" id="friendsBtn"><span data-i18n="menu_friends">&#129309; ARKADA&#350;LAR</span><span class="badgeDot" id="friendReqBadge" style="display:none;">0</span></button>
-    <button class="bigBtn tertiary" id="roomsBtn" data-i18n="menu_rooms">&#127918; E&#286;LENCE ODALARI</button>
-    <button class="bigBtn dangerBtn" id="hellModeBtn" data-i18n="menu_hell">&#128293; CEHENNEM MODU</button>
-  </div>
-</div>
-
-<div class="screen" id="screenLeaderboard">
-  <h1 data-i18n="lb_title">&#127942; Jeton S&#305;ralamas&#305;</h1>
-  <div class="menuBox" style="max-width:420px;">
-    <div id="leaderboardStatus" style="color:var(--text-lo);font-weight:700;font-size:13px;" data-i18n="loading_text">Y&#252;kleniyor...</div>
-    <div id="leaderboardList" style="width:100%;display:flex;flex-direction:column;gap:8px;"></div>
-    <button class="bigBtn secondary" id="leaderboardRefreshBtn" data-i18n="refresh_btn">&#128260; Yenile</button>
+    <button class="bigBtn" id="playBtn">&#9654; OYNA</button>
+    <button class="bigBtn secondary" id="shopBtn">&#128717;&#65039; G&#214;R&#220;N&#220;MLER</button>
+    <button class="bigBtn tertiary" id="avatarShopBtn">&#128444;&#65039; &#199;ER&#199;EVE D&#220;KKANI</button>
+    <button class="bigBtn secondary" id="profileBtn">&#128100; PROF&#304;L</button>
+    <button class="bigBtn dangerBtn" id="hellModeBtn">&#128293; CEHENNEM MODU</button>
   </div>
 </div>
 
 <div class="screen" id="screenProfile">
-  <h1 data-i18n="profile_title">&#128100; Profil</h1>
+  <h1>&#128100; Profil</h1>
   <div class="menuBox">
     <div class="avatarFrameWrap" id="avatarFrameWrap">
       <div class="frameRing" id="frameRing"></div>
       <div id="profileAvatar"></div>
     </div>
     <div id="profileName"></div>
-    <div id="profileIdRow" style="display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.05);border:1px solid var(--panel-border);border-radius:12px;padding:8px 14px;">
-      <span style="font-size:12px;font-weight:800;color:var(--text-lo);">ID:</span>
-      <span id="profileIdText" style="font-family:var(--font-display);font-weight:800;letter-spacing:1px;color:var(--accent);">...</span>
-      <button class="miniBtn" id="copyIdBtn" style="margin-left:auto;" data-i18n="copy_btn">Kopyala</button>
-    </div>
-    <div id="profileRecoveryRow" style="display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.05);border:1px solid var(--panel-border);border-radius:12px;padding:8px 14px;">
-      <span style="font-size:12px;font-weight:800;color:var(--text-lo);">Kurtarma Kodu:</span>
-      <span id="profileRecoveryText" style="font-family:var(--font-display);font-weight:800;letter-spacing:1px;color:var(--gold);">...</span>
-      <button class="miniBtn" id="copyRecoveryBtn" style="margin-left:auto;">Kopyala</button>
-    </div>
-    <div style="font-size:11px;font-weight:700;color:var(--text-lo);text-align:center;margin-top:-6px;">Bu kodu bir yere not et: oyunu g&#252;ncelleyip ayn&#305; isimle tekrar girdiginde ilerlemeni geri y&#252;klemek icin gerekir.</div>
     <div id="profileStats"></div>
-    <button class="bigBtn secondary" id="switchProfileBtn" data-i18n="profile_switch">&#128260; Profil De&#287;i&#351;tir</button>
-    <button class="bigBtn tertiary" id="renameProfileBtn" data-i18n="profile_rename">&#9999;&#65039; &#304;smi De&#287;i&#351;tir</button>
-    <button class="bigBtn dangerBtn" id="resetProfileBtn" data-i18n="profile_reset">&#128465;&#65039; &#304;lerlemeyi S&#305;f&#305;rla</button>
-    <button class="bigBtn dangerBtn" id="deleteAccountBtn" data-i18n="profile_delete">&#9760;&#65039; Hesab&#305; Sil</button>
-  </div>
-</div>
-
-<div class="screen" id="screenFriends">
-  <h1 data-i18n="friends_title">&#129309; Arkada&#351;lar</h1>
-  <div class="menuBox" style="max-width:420px;">
-    <div id="friendAddRow">
-      <input id="friendAddInput" maxlength="20" placeholder="Kullan&#305;c&#305; ad&#305; veya ID (SKY-XXXX)..." data-i18n-placeholder="friend_add_placeholder">
-      <button class="miniBtn" id="friendAddBtn" data-i18n="add_btn">Ekle</button>
-    </div>
-    <div class="tabRow">
-      <button class="tabBtn active" id="tabFriendsBtn" data-i18n="tab_my_friends">Arkada&#351;lar&#305;m</button>
-      <button class="tabBtn" id="tabRequestsBtn"><span data-i18n="tab_requests">&#304;stekler</span> <span class="badgeDot" id="reqTabBadge" style="display:none;">0</span></button>
-    </div>
-    <div id="friendsListWrap" style="width:100%;display:flex;flex-direction:column;gap:8px;"></div>
-    <button class="bigBtn secondary" id="friendsRefreshBtn" data-i18n="refresh_btn">&#128260; Yenile</button>
-  </div>
-</div>
-
-<div class="screen" id="screenRooms">
-  <h1 data-i18n="rooms_title">&#127918; E&#286;lence Odalar&#305;</h1>
-  <div class="menuBox" style="max-width:420px;">
-    <button class="bigBtn secondary" id="createRoomBtn" data-i18n="rooms_create">&#10133; Oda Olu&#351;tur</button>
-    <div id="roomJoinRow">
-      <input id="roomJoinInput" maxlength="6" placeholder="ODA KODU" data-i18n-placeholder="rooms_code_placeholder">
-      <button class="miniBtn" id="roomJoinBtn" data-i18n="rooms_join">Kat&#305;l</button>
-    </div>
-    <div style="width:100%;">
-      <p style="font-weight:800;font-size:13px;color:var(--text-lo);margin-bottom:8px;" data-i18n="rooms_friends_label">Arkada&#351;lar&#305;n odalar&#305;:</p>
-      <div id="friendRoomsList" style="display:flex;flex-direction:column;gap:8px;"></div>
-    </div>
-  </div>
-</div>
-
-<div class="screen" id="screenRoomLobby">
-  <h1 data-i18n="room_lobby_title">&#127918; Oda</h1>
-  <div class="menuBox" style="max-width:420px;">
-    <div id="roomCodeBig">------</div>
-    <p style="font-size:12px;color:var(--text-lo);font-weight:700;" data-i18n="room_lobby_share">Bu kodu arkada&#351;&#305;nla payla&#351;!</p>
-    <div id="roomMembersList"></div>
-    <button class="bigBtn" id="roomPlayBtn" data-i18n="room_lobby_play">&#127918; Birlikte Oyna (Canl\u0131)</button>
-    <button class="bigBtn dangerBtn" id="roomLeaveBtn" data-i18n="room_lobby_leave">Odadan &#199;&#305;k</button>
-    <div id="chatWrap">
-      <div id="chatMessages"></div>
-      <div id="chatInputRow">
-        <input id="chatInput" maxlength="200" placeholder="Mesaj yaz..." data-i18n-placeholder="chat_placeholder">
-        <button id="chatSendBtn">&#10148;</button>
-      </div>
-    </div>
+    <button class="bigBtn secondary" id="switchProfileBtn">&#128260; Profil De&#287;i&#351;tir</button>
+    <button class="bigBtn dangerBtn" id="resetProfileBtn">&#128465;&#65039; &#304;lerlemeyi S&#305;f&#305;rla</button>
   </div>
 </div>
 
 <div class="screen" id="screenLevels">
-  <h1 id="screenLevelsTitle" data-i18n="levels_title">Level Se&#231;</h1>
+  <h1 id="screenLevelsTitle">Level Se&#231;</h1>
   <div id="worldLabel"></div>
   <div id="levelPager">
     <button id="prevPageBtn">&#9664;</button>
@@ -754,14 +519,14 @@
 </div>
 
 <div class="screen" id="screenShop">
-  <h1 data-i18n="shop_title">&#128717;&#65039; G&#246;r&#252;n&#252;mler</h1>
-  <div class="walletDisplay">&#129689; <span id="walletShop">0</span> <span data-i18n="coin_label">Jeton</span></div>
+  <h1>&#128717;&#65039; G&#246;r&#252;n&#252;mler</h1>
+  <div class="walletDisplay">&#129689; <span id="walletShop">0</span> Jeton</div>
   <div id="shopGrid"></div>
 </div>
 
 <div class="screen" id="screenAvatarShop">
-  <h1 data-i18n="avatar_shop_title">&#128444;&#65039; &#199;er&#231;eve D&#252;kkan&#305;</h1>
-  <div class="walletDisplay">&#129689; <span id="walletAvatarShop">0</span> <span data-i18n="coin_label">Jeton</span></div>
+  <h1>&#128444;&#65039; &#199;er&#231;eve D&#252;kkan&#305;</h1>
+  <div class="walletDisplay">&#129689; <span id="walletAvatarShop">0</span> Jeton</div>
   <div id="avatarGrid"></div>
 </div>
 
@@ -771,7 +536,6 @@
     <span class="hudItem">&#129689; <span id="score">0</span>/<span id="total">0</span></span>
     <span class="hudItem" id="livesWrap">&#10084;&#65039;&#10084;&#65039;&#10084;&#65039;</span>
     <span class="hudItem">&#128176; <span id="walletGame">0</span></span>
-    <span class="hudItem" id="mpCountWrap" style="display:none;">&#128101; <span id="mpCountNum">1/4</span></span>
   </div>
   <canvas id="gameCanvas"></canvas>
   <div id="floatControls">
@@ -797,31 +561,8 @@
     <h2 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">&#128274; Admin Kodu</h2>
     <input id="adminCodeInput" type="text" inputmode="numeric" placeholder="Kodu gir..." style="margin-bottom: 18px;">
     <div class="row">
-      <button class="bigBtn" id="adminSubmitBtn" data-i18n="admin_confirm">Onayla</button>
-      <button class="bigBtn secondary" id="adminCancelBtn" data-i18n="admin_cancel">Vazge&#231;</button>
-    </div>
-  </div>
-</div>
-
-<div id="restoreOverlay" style="display:none; position:fixed; inset:0; background:rgba(6,4,16,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; z-index:300; padding:20px;">
-  <div class="overlayPanel">
-    <h2 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">&#9729;&#65039; Geri Y&#252;kle</h2>
-    <input id="restoreNameInput" type="text" maxlength="14" placeholder="Hesap ismi..." style="margin-bottom: 12px;">
-    <input id="restoreCodeInput" type="text" inputmode="numeric" maxlength="6" placeholder="6 haneli kurtarma kodu..." style="margin-bottom: 18px;">
-    <div class="row">
-      <button class="bigBtn" id="restoreSubmitBtn">Geri Y&#252;kle</button>
-      <button class="bigBtn secondary" id="restoreCancelBtn">Vazge&#231;</button>
-    </div>
-  </div>
-</div>
-
-<div id="renameOverlay" style="display:none; position:fixed; inset:0; background:rgba(6,4,16,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; z-index:300; padding:20px;">
-  <div class="overlayPanel">
-    <h2 style="font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">&#9999;&#65039; &#304;smi De&#287;i&#351;tir</h2>
-    <input id="renameNameInput" type="text" maxlength="14" placeholder="Yeni isim..." style="margin-bottom: 18px;">
-    <div class="row">
-      <button class="bigBtn" id="renameSubmitBtn">Devam Et</button>
-      <button class="bigBtn secondary" id="renameCancelBtn">Vazge&#231;</button>
+      <button class="bigBtn" id="adminSubmitBtn">Onayla</button>
+      <button class="bigBtn secondary" id="adminCancelBtn">Vazge&#231;</button>
     </div>
   </div>
 </div>
@@ -835,7 +576,7 @@ function initAudio() {
   if (audioCtx) return;
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   masterGain = audioCtx.createGain();
-  masterGain.gain.value = (typeof volumeLevel === 'number' ? volumeLevel : 100) / 100 * 0.35;
+  masterGain.gain.value = 0.35;
   masterGain.connect(audioCtx.destination);
   startMusic();
 }
@@ -867,293 +608,10 @@ function startMusic() {
   }
   loop();
 }
-// =====================================================================
-// D\u0130L S\u0130STEM\u0130 (TR / EN) - kaydirmali secim satiri ile ayarlardan degistirilir
-// =====================================================================
-const TRANSLATIONS = {
-  tr: {
-    login_subtitle: '200 B\u00d6L\u00dcM \u2022 EFSANEV\u0130 PETLER',
-    login_prompt: '\u0130smini yaz ve ba\u015fla',
-    login_name_placeholder: 'Ad\u0131n...',
-    login_btn: 'G\u0130R\u0130\u015e YAP',
-    coin_label: 'Jeton',
-    menu_play: '\u25b6 OYNA',
-    menu_shop: '\ud83d\udecd\ufe0f G\u00d6R\u00dcN\u00dcMLER',
-    menu_avatar_shop: '\ud83d\uddbc\ufe0f \u00c7ER\u00c7EVE D\u00dcKKANI',
-    menu_profile: '\ud83d\udc64 PROF\u0130L',
-    menu_leaderboard: '\ud83c\udfc6 SIRALAMA',
-    menu_friends: '\ud83e\udd1d ARKADA\u015eLAR',
-    menu_rooms: '\ud83c\udfae E\u011eLENCE ODALARI',
-    menu_hell: '\ud83d\udd25 CEHENNEM MODU',
-    lb_title: '\ud83c\udfc6 Jeton S\u0131ralamas\u0131',
-    loading_text: 'Y\u00fckleniyor...',
-    refresh_btn: '\ud83d\udd04 Yenile',
-    profile_title: '\ud83d\udc64 Profil',
-    copy_btn: 'Kopyala',
-    profile_switch: '\ud83d\udd04 Profil De\u011fi\u015ftir',
-    profile_rename: '\u270f\ufe0f \u0130smi De\u011fi\u015ftir',
-    profile_reset: '\ud83d\uddd1\ufe0f \u0130lerlemeyi S\u0131f\u0131rla',
-    profile_delete: '\u2620\ufe0f Hesab\u0131 Sil',
-    friends_title: '\ud83e\udd1d Arkada\u015flar',
-    friend_add_placeholder: 'Kullan\u0131c\u0131 ad\u0131 veya ID (SKY-XXXX)...',
-    add_btn: 'Ekle',
-    tab_my_friends: 'Arkada\u015flar\u0131m',
-    tab_requests: '\u0130stekler',
-    rooms_title: '\ud83c\udfae E\u011flence Odalar\u0131',
-    rooms_create: '\u2795 Oda Olu\u015ftur',
-    rooms_code_placeholder: 'ODA KODU',
-    rooms_join: 'Kat\u0131l',
-    rooms_friends_label: 'Arkada\u015flar\u0131n odalar\u0131:',
-    room_lobby_title: '\ud83c\udfae Oda',
-    room_lobby_share: 'Bu kodu arkada\u015f\u0131nla payla\u015f!',
-    room_lobby_play: '\ud83c\udfae Birlikte Oyna (Canl\u0131)',
-    room_lobby_leave: 'Odadan \u00c7\u0131k',
-    chat_placeholder: 'Mesaj yaz...',
-    levels_title: 'Level Se\u00e7',
-    levels_title_hell: '\ud83d\udd25 Cehennem Modu',
-    levels_title_mp: '\ud83d\udc65 Birlikte Oynanacak B\u00f6l\u00fcm (Oda: {code})',
-    shop_title: '\ud83d\udecd\ufe0f G\u00f6r\u00fcn\u00fcmler',
-    avatar_shop_title: '\ud83d\uddbc\ufe0f \u00c7er\u00e7eve D\u00fckkan\u0131',
-    settings_title: 'Ayarlar',
-    settings_fps: 'Kare H\u0131z\u0131 (FPS)',
-    settings_volume: 'Ses Seviyesi',
-    settings_lang: 'Dil',
-    settings_hint: 'kayd\u0131r & se\u00e7',
-    fps_unlimited: 'S\u0131n\u0131rs\u0131z',
-    admin_confirm: 'Onayla',
-    admin_cancel: 'Vazge\u00e7',
-    page_title: 'Sky Jump: Top Maceras\u0131',
-    label_select: 'Se\u00e7',
-    label_selected: 'Se\u00e7ili &#10003;',
-    lb_empty: 'Hen\u00fcz kimse skor g\u00f6ndermedi.',
-    lb_count: 'Toplam {n} oyuncu',
-    lb_error: 'Y\u00fckleme hatas\u0131, tekrar dene.'
-  },
-  en: {
-    login_subtitle: '200 LEVELS \u2022 LEGENDARY PETS',
-    login_prompt: 'Enter your name to start',
-    login_name_placeholder: 'Your name...',
-    login_btn: 'LOG IN',
-    coin_label: 'Coins',
-    menu_play: '\u25b6 PLAY',
-    menu_shop: '\ud83d\udecd\ufe0f SKINS',
-    menu_avatar_shop: '\ud83d\uddbc\ufe0f FRAME SHOP',
-    menu_profile: '\ud83d\udc64 PROFILE',
-    menu_leaderboard: '\ud83c\udfc6 LEADERBOARD',
-    menu_friends: '\ud83e\udd1d FRIENDS',
-    menu_rooms: '\ud83c\udfae FUN ROOMS',
-    menu_hell: '\ud83d\udd25 HELL MODE',
-    lb_title: '\ud83c\udfc6 Coin Leaderboard',
-    loading_text: 'Loading...',
-    refresh_btn: '\ud83d\udd04 Refresh',
-    profile_title: '\ud83d\udc64 Profile',
-    copy_btn: 'Copy',
-    profile_switch: '\ud83d\udd04 Switch Profile',
-    profile_rename: '\u270f\ufe0f Rename',
-    profile_reset: '\ud83d\uddd1\ufe0f Reset Progress',
-    profile_delete: '\u2620\ufe0f Delete Account',
-    friends_title: '\ud83e\udd1d Friends',
-    friend_add_placeholder: 'Username or ID (SKY-XXXX)...',
-    add_btn: 'Add',
-    tab_my_friends: 'My Friends',
-    tab_requests: 'Requests',
-    rooms_title: '\ud83c\udfae Fun Rooms',
-    rooms_create: '\u2795 Create Room',
-    rooms_code_placeholder: 'ROOM CODE',
-    rooms_join: 'Join',
-    rooms_friends_label: "Your friends' rooms:",
-    room_lobby_title: '\ud83c\udfae Room',
-    room_lobby_share: 'Share this code with your friend!',
-    room_lobby_play: '\ud83c\udfae Play Together (Live)',
-    room_lobby_leave: 'Leave Room',
-    chat_placeholder: 'Type a message...',
-    levels_title: 'Select Level',
-    levels_title_hell: '\ud83d\udd25 Hell Mode',
-    levels_title_mp: '\ud83d\udc65 Level to Play Together (Room: {code})',
-    shop_title: '\ud83d\udecd\ufe0f Skins',
-    avatar_shop_title: '\ud83d\uddbc\ufe0f Frame Shop',
-    settings_title: 'Settings',
-    settings_fps: 'Frame Rate (FPS)',
-    settings_volume: 'Volume',
-    settings_lang: 'Language',
-    settings_hint: 'swipe & select',
-    fps_unlimited: 'Unlimited',
-    admin_confirm: 'Confirm',
-    admin_cancel: 'Cancel',
-    page_title: 'Sky Jump: Sky Adventure',
-    label_select: 'Select',
-    label_selected: 'Selected &#10003;',
-    lb_empty: 'No one has submitted a score yet.',
-    lb_count: '{n} players total',
-    lb_error: 'Loading error, try again.'
-  }
-};
-
-let currentLang = 'tr';
-try {
-  const savedLang = localStorage.getItem('skyjump_lang');
-  if (savedLang === 'tr' || savedLang === 'en') currentLang = savedLang;
-} catch (e) {}
-
-function t(key) {
-  const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-  return (key in dict) ? dict[key] : (TRANSLATIONS.tr[key] || key);
-}
-
-function applyLanguage() {
-  document.documentElement.lang = currentLang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    el.innerHTML = t(el.getAttribute('data-i18n'));
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
-  });
-  // Bolum secim ekraninin basligi moda gore dinamik oldugu icin ayrica guncellenir.
-  const levelsTitleEl = document.getElementById('screenLevelsTitle');
-  if (levelsTitleEl) {
-    if (mpActive || pendingMultiplayerSelect) {
-      levelsTitleEl.innerHTML = t('levels_title_mp').replace('{code}', currentRoomCode || '');
-    } else if (typeof hellMode !== 'undefined' && hellMode) {
-      levelsTitleEl.innerHTML = t('levels_title_hell');
-    } else {
-      levelsTitleEl.innerHTML = t('levels_title');
-    }
-  }
-  // Dukkan (petler) ve cerceve dukkani isimleri data-i18n ile degil, PETS/AVATAR_FRAMES
-  // dizilerinden dinamik olarak cizildigi icin dil degisince ayrica yeniden cizilir.
-  if (typeof playerData !== 'undefined' && playerData) {
-    if (typeof renderShop === 'function' && document.getElementById('shopGrid')) renderShop();
-    if (typeof renderAvatarShop === 'function' && document.getElementById('avatarGrid')) renderAvatarShop();
-  }
-}
-
 document.getElementById('soundToggle').addEventListener('click', () => {
   if (!audioCtx) initAudio();
   soundOn = !soundOn;
   document.getElementById('soundToggle').innerHTML = soundOn ? '&#128266;' : '&#128263;';
-});
-
-// =====================================================================
-// AYARLAR: KARE HIZI (FPS) ve SES SEV\u0130YES\u0130 - kayd\u0131rmal\u0131 (satir) sec\u0130m
-// =====================================================================
-const FPS_OPTIONS = [30, 40, 50, 60, 'unlimited'];
-const VOLUME_OPTIONS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-const MASTER_MAX_GAIN = 0.35;
-
-let targetFPS = 60;
-let volumeLevel = 100;
-try {
-  const savedFps = localStorage.getItem('skyjump_fps');
-  if (savedFps !== null) targetFPS = savedFps === 'unlimited' ? 'unlimited' : (parseInt(savedFps, 10) || 60);
-  const savedVol = localStorage.getItem('skyjump_volume');
-  if (savedVol !== null) { const v = parseInt(savedVol, 10); if (!isNaN(v)) volumeLevel = v; }
-} catch (e) {}
-
-function applyVolumeLevel() {
-  if (masterGain) masterGain.gain.value = (volumeLevel / 100) * MASTER_MAX_GAIN;
-}
-
-// Genel amacli "kaydirarak sec" satiri: butonlu secim yerine, satiri sola/saga
-// kaydirip ortadaki ogeyi otomatik secili hale getirir (scroll-snap tabanli).
-function buildSnapRow(rowEl, options, currentValue, formatLabel, onSelect) {
-  rowEl.innerHTML = '';
-  const padSize = 'calc(50% - 38px)';
-  rowEl.style.paddingLeft = padSize;
-  rowEl.style.paddingRight = padSize;
-
-  options.forEach(val => {
-    const item = document.createElement('div');
-    item.className = 'snapItem';
-    item.textContent = formatLabel(val);
-    item.dataset.value = String(val);
-    if (val === currentValue) item.classList.add('selected');
-    item.addEventListener('click', () => centerSnapItem(item, true));
-    rowEl.appendChild(item);
-  });
-
-  function centerSnapItem(item, smooth) {
-    const target = item.offsetLeft - (rowEl.clientWidth / 2) + (item.offsetWidth / 2);
-    rowEl.scrollTo({ left: target, behavior: smooth ? 'smooth' : 'auto' });
-  }
-
-  function selectNearest() {
-    const items = Array.from(rowEl.children);
-    const center = rowEl.scrollLeft + rowEl.clientWidth / 2;
-    let nearest = items[0], nearestDist = Infinity;
-    items.forEach(it => {
-      const itCenter = it.offsetLeft + it.offsetWidth / 2;
-      const dist = Math.abs(itCenter - center);
-      if (dist < nearestDist) { nearestDist = dist; nearest = it; }
-    });
-    items.forEach(it => it.classList.toggle('selected', it === nearest));
-    if (!nearest) return;
-    // Ham deger oldugu gibi geri dondurulur; sayiya cevirme islemi
-    // ihtiyaci olan cagiran (FPS/Ses) tarafinda yapilir. Boylece 'tr'/'en'
-    // gibi metin degerleri (dil secimi) yanlislikla NaN'a donusmez.
-    onSelect(nearest.dataset.value);
-  }
-
-  let scrollDebounce = null;
-  rowEl.addEventListener('scroll', () => {
-    clearTimeout(scrollDebounce);
-    scrollDebounce = setTimeout(selectNearest, 90);
-  });
-
-  requestAnimationFrame(() => {
-    const items = Array.from(rowEl.children);
-    const match = items.find(it => it.dataset.value === String(currentValue)) || items[0];
-    if (match) centerSnapItem(match, false);
-  });
-}
-
-function openSettingsOverlay() {
-  initAudio();
-  document.getElementById('settingsOverlay').style.display = 'flex';
-  buildSnapRow(
-    document.getElementById('fpsRow'), FPS_OPTIONS, targetFPS,
-    v => (v === 'unlimited' ? t('fps_unlimited') : v + ' FPS'),
-    v => {
-      // selectNearest artik ham string dondurur; burada sayiya ceviriyoruz.
-      targetFPS = v === 'unlimited' ? 'unlimited' : parseInt(v, 10);
-      try { localStorage.setItem('skyjump_fps', String(targetFPS)); } catch (e) {}
-    }
-  );
-  buildSnapRow(
-    document.getElementById('volumeRow'), VOLUME_OPTIONS, volumeLevel,
-    v => v + '%',
-    v => {
-      volumeLevel = parseInt(v, 10);
-      try { localStorage.setItem('skyjump_volume', String(volumeLevel)); } catch (e) {}
-      applyVolumeLevel();
-    }
-  );
-  buildSnapRow(
-    document.getElementById('langRow'), ['tr', 'en'], currentLang,
-    v => (v === 'tr' ? '\ud83c\uddf9\ud83c\uddf7 T\u00fcrk\u00e7e' : '\ud83c\uddec\ud83c\udde7 English'),
-    v => {
-      // Dil kodu ('tr' / 'en') string oldugu icin sayiya CEVRILMEZ.
-      currentLang = v;
-      try { localStorage.setItem('skyjump_lang', v); } catch (e) {}
-      applyLanguage();
-      // Dil degisince FPS/ses satirlarindaki etiketler de (ornegin "Sinirsiz"/"Unlimited") guncellensin.
-      buildSnapRow(
-        document.getElementById('fpsRow'), FPS_OPTIONS, targetFPS,
-        vv => (vv === 'unlimited' ? t('fps_unlimited') : vv + ' FPS'),
-        vv => {
-          targetFPS = vv === 'unlimited' ? 'unlimited' : parseInt(vv, 10);
-          try { localStorage.setItem('skyjump_fps', String(targetFPS)); } catch (e) {}
-        }
-      );
-    }
-  );
-}
-function closeSettingsOverlay() {
-  document.getElementById('settingsOverlay').style.display = 'none';
-}
-document.getElementById('settingsBtn').addEventListener('click', openSettingsOverlay);
-document.getElementById('settingsCloseBtn').addEventListener('click', closeSettingsOverlay);
-document.getElementById('settingsOverlay').addEventListener('click', e => {
-  if (e.target.id === 'settingsOverlay') closeSettingsOverlay();
 });
 
 // =====================================================================
@@ -1267,35 +725,6 @@ const PETS = [
 ];
 const RARITY_LABEL = { common:'Yayg\u0131n', rare:'Nadir', epic:'Efsanevi', mythic:'Mistik', promax:'ULTRA' };
 
-// Ingilizce dil secildiginde gosterilecek pet/cerceve/nadirlik isimleri.
-// PETS/AVATAR_FRAMES dizilerindeki 'name' alani hep Turkce kalir (varsayilan/tr),
-// asagidaki tablolar sadece currentLang === 'en' oldugunda kullanilir.
-const PET_NAMES_EN = {
-  red: 'Red', orange: 'Orange', yellow: 'Yellow', green: 'Green', teal: 'Teal',
-  blue: 'Blue', navy: 'Navy', purple: 'Purple', pink: 'Pink', brown: 'Brown',
-  gray: 'Gray', gold: 'Gold', silver: 'Silver', copper: 'Copper', ruby: 'Ruby',
-  rainbow: 'Rainbow', stardust: 'Stardust', cosmic: 'Cosmic', aurora: 'Aurora',
-  phoenix: 'Phoenix Fire', galaxy: 'Galaxy', voidking: 'Dark Sovereign', promax: 'ULTRA \u26a1'
-};
-const FRAME_NAMES_EN = {
-  'frame-none': 'Classic', 'frame-red': 'Fire Red', 'frame-teal': 'Teal', 'frame-navy': 'Navy',
-  'frame-purple': 'Purple Prism', 'frame-pink': 'Neon Pink', 'frame-gold': 'Gold Frame',
-  'frame-ruby': 'Ruby Frame', 'frame-rainbow': 'Rainbow Frame', 'frame-cosmic': 'Cosmic Frame',
-  'frame-aurora': 'Aurora Frame', 'frame-phoenix': 'Phoenix Frame', 'frame-galaxy': 'Galaxy Frame',
-  'frame-voidking': 'Dark Sovereign Frame'
-};
-const RARITY_LABEL_EN = { common: 'Common', rare: 'Rare', epic: 'Epic', mythic: 'Mythic', promax: 'ULTRA' };
-
-function petDisplayName(pet) {
-  return currentLang === 'en' ? (PET_NAMES_EN[pet.id] || pet.name) : pet.name;
-}
-function frameDisplayName(frame) {
-  return currentLang === 'en' ? (FRAME_NAMES_EN[frame.id] || frame.name) : frame.name;
-}
-function rarityDisplayLabel(rarity) {
-  return currentLang === 'en' ? (RARITY_LABEL_EN[rarity] || RARITY_LABEL[rarity]) : RARITY_LABEL[rarity];
-}
-
 // Ortak g\u00f6rsel s\u0131n\u0131f e\u015flemesi: hem petler hem \u00e7er\u00e7eveler i\u00e7in ayn\u0131 fonksiyon kullan\u0131l\u0131r.
 const VISUAL_ANIM_CLASSES = ['anim-rainbow','anim-stardust','anim-cosmic','anim-aurora','anim-phoenix','anim-galaxy','anim-voidking','anim-promax'];
 function getVisualClass(id) {
@@ -1346,7 +775,7 @@ let activeProfile = null;
 let hellMode = false;
 
 function defaultPlayerData() {
-  return { coins: 0, unlockedLevel: 0, ownedPets: ['red'], selectedPet: 'red', completedLevels: [], levelStars: {}, selectedFrame: 'frame-none', ownedFrames: ['frame-none'], hellUnlockedLevel: 0, hellCompletedLevels: [], hellLevelStars: {}, playerId: null, recoveryCode: null };
+  return { coins: 0, unlockedLevel: 0, ownedPets: ['red'], selectedPet: 'red', completedLevels: [], levelStars: {}, selectedFrame: 'frame-none', ownedFrames: ['frame-none'], hellUnlockedLevel: 0, hellCompletedLevels: [], hellLevelStars: {} };
 }
 let playerData = defaultPlayerData();
 
@@ -1364,24 +793,10 @@ function sanitizePlayerData(saved) {
     if (typeof saved.hellUnlockedLevel === 'number') d.hellUnlockedLevel = saved.hellUnlockedLevel;
     if (Array.isArray(saved.hellCompletedLevels)) d.hellCompletedLevels = saved.hellCompletedLevels;
     if (saved.hellLevelStars && typeof saved.hellLevelStars === 'object') d.hellLevelStars = saved.hellLevelStars;
-    if (typeof saved.playerId === 'string') d.playerId = saved.playerId;
-    if (typeof saved.recoveryCode === 'string') d.recoveryCode = saved.recoveryCode;
   }
   if (!d.ownedPets.includes(d.selectedPet)) d.ownedPets.push(d.selectedPet);
   if (!d.ownedFrames.includes(d.selectedFrame)) d.ownedFrames.push(d.selectedFrame);
   return d;
-}
-
-// Her profilin, sadece o hesabin sahibinin bilecegi 6 haneli bir kurtarma
-// kodu olmasini saglar. Bu kod olmadan, ayni ismi kullanan BASKA biri
-// bulut yedeginden bu hesabin ilerlemesini geri yukleyemez (isim tek
-// basina yeterli bir kimlik dogrulama degildir).
-function ensureRecoveryCode() {
-  if (!playerData.recoveryCode) {
-    playerData.recoveryCode = String(Math.floor(100000 + Math.random() * 900000));
-    saveProfiles();
-  }
-  return playerData.recoveryCode;
 }
 
 function starsForCoins(coinCount, totalCoins) {
@@ -1408,585 +823,1339 @@ function saveProfiles() {
   } catch (e) {}
 }
 
-function savePlayerData() { saveProfiles(); pushScoreToLeaderboard(); pushProfileBackup(); }
+function savePlayerData() { saveProfiles(); }
 
-// =====================================================================
-// BULUT YEDEK / GER\u0130 Y\u00dcKLEME (Firebase) \u2014 oyun g\u00fcncellendiginde,
-// tarayici verisi silindiginde veya farkli bir cihaz/adreste acildiginda
-// ilerlemenin kaybolmamasi icin. localStorage sadece bu taray\u0131c\u0131ya/adrese
-// baglidir; oyun guncellemesi barindirma adresini/paketini degistirirse
-// ya da tarayici verisini temizlerse localStorage sifirlanir. Bu yuzden
-// her kayitta profil verisinin tam bir kopyasi da Firebase'e (isme bagli
-// olarak) yazilir; ayni isimle tekrar giris yapildiginda yerel veri yoksa
-// bu yedekten otomatik geri yuklenir.
-let backupPushTimer = null;
-function pushProfileBackup() {
-  if (!activeProfile || !playerData) return;
-  clearTimeout(backupPushTimer);
-  backupPushTimer = setTimeout(() => {
-    fbPut(`backups/${encodeURIComponent(activeProfile)}`, Object.assign({}, playerData, { _backupAt: Date.now() }));
-  }, 800);
+function renderProfileChips() {
+  const wrap = document.getElementById('profileChips');
+  wrap.innerHTML = '';
+  Object.keys(profiles).forEach(name => {
+    const b = document.createElement('button');
+    b.className = 'chipBtn';
+    const icon = document.createElement('span');
+    icon.innerHTML = '&#128100; ';
+    b.appendChild(icon);
+    b.appendChild(document.createTextNode(name));
+    b.onclick = () => { document.getElementById('nameInput').value = name; doLogin(); };
+    wrap.appendChild(b);
+  });
 }
 
-// =====================================================================
-// ONLINE J\u0130ETON SIRALAMASI (Firebase Realtime Database)
-// =====================================================================
-const FIREBASE_DB_URL = 'https://sky-jump-game-default-rtdb.firebaseio.com';
-let lbPushTimer = null;
-function pushScoreToLeaderboard(immediate) {
-  if (!activeProfile || !playerData) return;
-  const doPush = () => {
-    const safeKey = encodeURIComponent(activeProfile);
-    const payload = { name: activeProfile, coins: playerData.coins || 0, updatedAt: Date.now() };
-    fetch(`${FIREBASE_DB_URL}/leaderboard/${safeKey}.json`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(() => {});
-  };
-  if (immediate) { clearTimeout(lbPushTimer); doPush(); return; }
-  clearTimeout(lbPushTimer);
-  lbPushTimer = setTimeout(doPush, 800);
-}
-
-function loadLeaderboard() {
-  const statusEl = document.getElementById('leaderboardStatus');
-  const listEl = document.getElementById('leaderboardList');
-  statusEl.textContent = t('loading_text');
-  listEl.innerHTML = '';
-  // Once, the leaderboard could get stuck on "Loading..." forever if the network
-  // request never resolved (slow/unreachable connection). An AbortController timeout
-  // now guarantees it always fails fast and shows a retry option instead of hanging.
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
-  fetch(`${FIREBASE_DB_URL}/leaderboard.json`, { signal: controller.signal })
-    .then(r => r.json())
-    .then(data => {
-      clearTimeout(timeoutId);
-      if (!data || typeof data !== 'object') { statusEl.textContent = t('lb_empty'); return; }
-      // 1 haftadan (7 gun) uzun suredir oyuna girilmemis hesaplar siralamadan
-      // gizlenir. Silinmez, sadece listede gorunmez; oyuna tekrar girildiginde
-      // (registerUserOnline -> pushScoreToLeaderboard) updatedAt tazelenir ve
-      // hesap otomatik olarak siralamaya geri doner.
-      const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-      const now = Date.now();
-      const entries = Object.values(data).filter(e => e && typeof e.coins === 'number' && (now - (e.updatedAt || 0)) < ONE_WEEK_MS);
-      entries.sort((a, b) => b.coins - a.coins);
-      const top = entries.slice(0, 50);
-      if (entries.length === 0) { statusEl.textContent = t('lb_empty'); return; }
-      statusEl.textContent = t('lb_count').replace('{n}', entries.length);
-      top.forEach((entry, idx) => {
-        const row = document.createElement('div');
-        const isMe = entry.name === activeProfile;
-        row.style.cssText = `display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;background:${isMe ? 'rgba(124,107,255,0.18)' : 'rgba(0,0,0,0.05)'};border:1px solid ${isMe ? 'var(--accent)' : 'var(--panel-border)'};font-weight:800;font-family:var(--font-display);font-size:14px;`;
-        const medal = idx === 0 ? '\u{1F947}' : idx === 1 ? '\u{1F948}' : idx === 2 ? '\u{1F949}' : `#${idx + 1}`;
-        row.innerHTML = `<span>${medal} ${entry.name}</span><span style="color:var(--gold)">\u{1FA99} ${entry.coins}</span>`;
-        listEl.appendChild(row);
-      });
-    })
-    .catch(() => { clearTimeout(timeoutId); statusEl.textContent = t('lb_error'); });
-}
-
-// =====================================================================
-// KULLANICI KAYDI (Firebase) - arkada\u015f/oda sistemleri i\u00e7in
-// =====================================================================
-function fbGet(path) {
-  return fetch(`${FIREBASE_DB_URL}/${path}.json`).then(r => r.json()).catch(() => null);
-}
-function fbPut(path, data) {
-  return fetch(`${FIREBASE_DB_URL}/${path}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => null);
-}
-function fbPatch(path, data) {
-  return fetch(`${FIREBASE_DB_URL}/${path}.json`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => null);
-}
-function fbDelete(path) {
-  return fetch(`${FIREBASE_DB_URL}/${path}.json`, { method: 'DELETE' }).catch(() => null);
-}
-function fbPost(path, data) {
-  return fetch(`${FIREBASE_DB_URL}/${path}.json`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(r => r.json()).catch(() => null);
-}
-function registerUserOnline(name) {
+function doLogin() {
+  const name = document.getElementById('nameInput').value.trim();
   if (!name) return;
-  fbPatch(`users/${encodeURIComponent(name)}`, { name, lastSeen: Date.now() });
-  // Oyuna her girildiginde sadece "online" durumu degil, siralamadaki
-  // updatedAt zaman damgasi da hemen tazelenir. Boylece 1 haftadir
-  // girilmedigi icin siralamadan gizlenmis olan bir hesap, oyuna tekrar
-  // girer girmez (jeton hareketi beklemeden) siralamaya geri doner.
-  pushScoreToLeaderboard(true);
-}
-
-// =====================================================================
-// OYUNCU ID S\u0130STEM\u0130 (isimsiz, kal\u0131c\u0131 kimlik ile arkada\u015f ekleme)
-// =====================================================================
-function generateIdCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let s = '';
-  for (let i = 0; i < 4; i++) s += chars[Math.floor(Math.random() * chars.length)];
-  return 'SKY-' + s;
-}
-function looksLikeId(raw) {
-  return /^SKY-[A-Z0-9]{4,6}$/i.test(raw.trim());
-}
-async function ensurePlayerId() {
-  if (playerData.playerId) {
-    fbGet(`userIds/${encodeURIComponent(playerData.playerId)}`).then(owner => {
-      if (owner !== activeProfile) fbPut(`userIds/${encodeURIComponent(playerData.playerId)}`, activeProfile);
-    });
-    return playerData.playerId;
-  }
-  let id = null;
-  for (let attempt = 0; attempt < 6; attempt++) {
-    const candidate = generateIdCode();
-    const taken = await fbGet(`userIds/${encodeURIComponent(candidate)}`);
-    if (!taken) { id = candidate; break; }
-  }
-  if (!id) id = generateIdCode() + Math.floor(Math.random() * 9);
-  playerData.playerId = id;
+  if (!profiles[name]) profiles[name] = defaultPlayerData();
+  activeProfile = name;
+  playerData = profiles[name];
   saveProfiles();
-  await fbPut(`userIds/${encodeURIComponent(id)}`, activeProfile);
-  await fbPatch(`users/${encodeURIComponent(activeProfile)}`, { id });
-  return id;
+  updateWalletDisplays();
+  showScreen('screenMenu');
 }
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+function renderProfile() {
+  document.getElementById('profileName').textContent = activeProfile || '';
+  const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
+  const av = document.getElementById('profileAvatar');
+  applyVisualToElement(av, pet.id, pet.color);
+
+  const frame = AVATAR_FRAMES.find(f => f.id === playerData.selectedFrame) || AVATAR_FRAMES[0];
+  const ring = document.getElementById('frameRing');
+  applyVisualToElement(ring, frame.id, frame.color);
+
+  const completed = playerData.completedLevels ? playerData.completedLevels.length : 0;
+  document.getElementById('profileStats').innerHTML =
+    `&#129689; Jeton: ${playerData.coins}<br>&#9989; Tamamlanan Level: ${completed} / ${levels.length}<br>&#128062; Sahip Olunan Pet: ${playerData.ownedPets.length} / ${PETS.length}<br>&#128444;&#65039; Sahip Olunan \u00c7er\u00e7eve: ${playerData.ownedFrames.length} / ${AVATAR_FRAMES.length}`;
+}
+document.getElementById('profileBtn').addEventListener('click', () => { renderProfile(); showScreen('screenProfile'); });
+document.getElementById('switchProfileBtn').addEventListener('click', () => {
+  document.getElementById('nameInput').value = '';
+  renderProfileChips();
+  showScreen('screenLogin');
+});
+document.getElementById('resetProfileBtn').addEventListener('click', () => {
+  showOverlay('Emin misin?', 'T\u00fcm ilerleme, jeton ve petler silinecek.', [
+    { label: 'Evet, S\u0131f\u0131rla', action: () => {
+      profiles[activeProfile] = defaultPlayerData();
+      playerData = profiles[activeProfile];
+      saveProfiles();
+      updateWalletDisplays();
+      renderProfile();
+    } },
+    { label: 'Vazge\u00e7', secondary: true, action: () => {} }
+  ]);
+});
 
 // =====================================================================
-// ARKADA\u015e S\u0130STEM\u0130
+// EKRAN Y\u00d6NET\u0130M\u0130 + TAM EKRAN
 // =====================================================================
-let friendsTab = 'friends';
-function openFriendsScreen() {
-  showScreen('screenFriends');
-  friendsTab = 'friends';
-  document.getElementById('tabFriendsBtn').classList.add('active');
-  document.getElementById('tabRequestsBtn').classList.remove('active');
-  refreshFriendsScreen();
+function requestFullscreenTry() {
+  const el = document.documentElement;
+  const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+  if (req) { try { const p = req.call(el); if (p && p.catch) p.catch(() => {}); } catch (e) {} }
 }
-function refreshFriendsScreen() {
-  const wrap = document.getElementById('friendsListWrap');
-  wrap.innerHTML = '<div class="emptyHint">Y\u00fckleniyor...</div>';
-  if (friendsTab === 'friends') {
-    fbGet(`friends/${encodeURIComponent(activeProfile)}`).then(data => {
-      wrap.innerHTML = '';
-      const names = data ? Object.keys(data).filter(k => data[k]) : [];
-      if (!names.length) { wrap.innerHTML = '<div class="emptyHint">Hen\u00fcz arkada\u015f\u0131n yok. Yukar\u0131dan ekleyebilirsin!</div>'; return; }
-      names.forEach(n => {
-        const row = document.createElement('div');
-        row.className = 'listCard';
-        row.innerHTML = `<span class="lcName">&#128100; ${n}</span>`;
-        const btn = document.createElement('button');
-        btn.className = 'miniBtn danger';
-        btn.textContent = 'Ç\u0131kar';
-        btn.onclick = () => removeFriend(n);
-        row.appendChild(btn);
-        wrap.appendChild(row);
-      });
-    });
-  } else {
-    fbGet(`friendRequests/${encodeURIComponent(activeProfile)}`).then(data => {
-      wrap.innerHTML = '';
-      const names = data ? Object.keys(data) : [];
-      if (!names.length) { wrap.innerHTML = '<div class="emptyHint">Bekleyen istek yok.</div>'; return; }
-      names.forEach(n => {
-        const row = document.createElement('div');
-        row.className = 'listCard';
-        row.innerHTML = `<span class="lcName">&#128100; ${n}</span>`;
-        const btnWrap = document.createElement('div');
-        btnWrap.style.cssText = 'display:flex;gap:6px;';
-        const acceptBtn = document.createElement('button');
-        acceptBtn.className = 'miniBtn secondary';
-        acceptBtn.textContent = 'Kabul';
-        acceptBtn.onclick = () => acceptFriendRequest(n);
-        const declineBtn = document.createElement('button');
-        declineBtn.className = 'miniBtn ghost';
-        declineBtn.textContent = 'Reddet';
-        declineBtn.onclick = () => declineFriendRequest(n);
-        btnWrap.appendChild(acceptBtn); btnWrap.appendChild(declineBtn);
-        row.appendChild(btnWrap);
-        wrap.appendChild(row);
-      });
-    });
+function exitFullscreenTry() {
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) { try { const p = exit.call(document); if (p && p.catch) p.catch(() => {}); } catch (e) {} }
   }
 }
-document.getElementById('tabFriendsBtn').addEventListener('click', () => {
-  friendsTab = 'friends';
-  document.getElementById('tabFriendsBtn').classList.add('active');
-  document.getElementById('tabRequestsBtn').classList.remove('active');
-  refreshFriendsScreen();
-});
-document.getElementById('tabRequestsBtn').addEventListener('click', () => {
-  friendsTab = 'requests';
-  document.getElementById('tabRequestsBtn').classList.add('active');
-  document.getElementById('tabFriendsBtn').classList.remove('active');
-  refreshFriendsScreen();
-});
-document.getElementById('friendsRefreshBtn').addEventListener('click', () => { refreshFriendsScreen(); refreshFriendRequestBadge(); });
-document.getElementById('friendsBtn').addEventListener('click', openFriendsScreen);
+document.getElementById('fsToggleBtn').addEventListener('click', requestFullscreenTry);
 
-function addFriendByName() {
-  const input = document.getElementById('friendAddInput');
-  const raw = input.value.trim();
-  input.value = '';
-  if (!raw) return;
-  if (looksLikeId(raw)) {
-    addFriendById(raw.toUpperCase());
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const backBtn = document.getElementById('globalBackBtn');
+  if (id === 'screenMenu' || id === 'screenLogin') backBtn.classList.remove('show');
+  else backBtn.classList.add('show');
+
+  if (id === 'screenGame') {
+    document.body.classList.add('fs-active');
+    requestFullscreenTry();
+    resizeCanvas();
   } else {
-    addFriendByNameDirect(raw);
+    document.body.classList.remove('fs-active');
+    exitFullscreenTry();
   }
 }
-
-function addFriendByNameDirect(target) {
-  if (target === activeProfile) return;
-  fbGet(`users/${encodeURIComponent(target)}`).then(data => {
-    if (!data) {
-      showOverlay('Bulunamad\u0131 &#10060;', `"${target}" isimli bir oyuncu bulunamad\u0131.\nOyuncunun en az bir kez giri\u015f yapm\u0131\u015f olmas\u0131 gerekir.`, [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    fbPatch(`friendRequests/${encodeURIComponent(target)}`, { [activeProfile]: Date.now() }).then(() => {
-      showOverlay('İstek G\u00f6nderildi &#9989;', `${target} kullan\u0131c\u0131s\u0131na arkada\u015fl\u0131k iste\u011fi g\u00f6nderildi.`, [{ label: 'Tamam', action: () => {} }]);
-    });
-  });
-}
-
-function addFriendById(id) {
-  fbGet(`userIds/${encodeURIComponent(id)}`).then(targetName => {
-    if (!targetName) {
-      showOverlay('Bulunamad\u0131 &#10060;', `"${id}" ID'sine sahip bir oyuncu bulunamad\u0131. ID'yi kontrol et.`, [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    if (targetName === activeProfile) {
-      showOverlay('Olmaz &#128517;', 'Kendini arkada\u015f olarak ekleyemezsin.', [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    fbPatch(`friendRequests/${encodeURIComponent(targetName)}`, { [activeProfile]: Date.now() }).then(() => {
-      showOverlay('İstek G\u00f6nderildi &#9989;', `${targetName} (ID: ${id}) kullan\u0131c\u0131s\u0131na arkada\u015fl\u0131k iste\u011fi g\u00f6nderildi.`, [{ label: 'Tamam', action: () => {} }]);
-    });
-  });
-}
-document.getElementById('friendAddBtn').addEventListener('click', addFriendByName);
-document.getElementById('friendAddInput').addEventListener('keydown', e => { if (e.key === 'Enter') addFriendByName(); });
-
-function acceptFriendRequest(name) {
-  fbPatch(`friends/${encodeURIComponent(activeProfile)}`, { [name]: true });
-  fbPatch(`friends/${encodeURIComponent(name)}`, { [activeProfile]: true });
-  fbDelete(`friendRequests/${encodeURIComponent(activeProfile)}/${encodeURIComponent(name)}`);
-  refreshFriendsScreen();
-  refreshFriendRequestBadge();
-}
-function declineFriendRequest(name) {
-  fbDelete(`friendRequests/${encodeURIComponent(activeProfile)}/${encodeURIComponent(name)}`);
-  refreshFriendsScreen();
-  refreshFriendRequestBadge();
-}
-function removeFriend(name) {
-  fbDelete(`friends/${encodeURIComponent(activeProfile)}/${encodeURIComponent(name)}`);
-  fbDelete(`friends/${encodeURIComponent(name)}/${encodeURIComponent(activeProfile)}`);
-  refreshFriendsScreen();
-}
-function refreshFriendRequestBadge() {
-  if (!activeProfile) return;
-  fbGet(`friendRequests/${encodeURIComponent(activeProfile)}`).then(data => {
-    const count = data ? Object.keys(data).length : 0;
-    const badge = document.getElementById('friendReqBadge');
-    const tabBadge = document.getElementById('reqTabBadge');
-    if (count > 0) {
-      badge.style.display = 'inline-block'; badge.textContent = count;
-      if (tabBadge) { tabBadge.style.display = 'inline-block'; tabBadge.textContent = count; }
-    } else {
-      badge.style.display = 'none';
-      if (tabBadge) tabBadge.style.display = 'none';
-    }
-  });
-}
-
-// =====================================================================
-// E\u011eLENCE ODALARI + CHAT S\u0130STEM\u0130
-// =====================================================================
-let currentRoomCode = null;
-let roomPollTimer = null;
-let lastRenderedMsgKey = null;
-let renderedMsgKeys = {};
-
-function genRoomCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let code = '';
-  for (let i = 0; i < 5; i++) code += chars[Math.floor(Math.random() * chars.length)];
-  return code;
-}
-
-document.getElementById('roomsBtn').addEventListener('click', () => { openRoomsScreen(); });
-function openRoomsScreen() {
-  showScreen('screenRooms');
-  loadFriendRooms();
-}
-function loadFriendRooms() {
-  const wrap = document.getElementById('friendRoomsList');
-  wrap.innerHTML = '<div class="emptyHint">Y\u00fckleniyor...</div>';
-  fbGet(`friends/${encodeURIComponent(activeProfile)}`).then(async data => {
-    const names = data ? Object.keys(data).filter(k => data[k]) : [];
-    if (!names.length) { wrap.innerHTML = '<div class="emptyHint">Arkada\u015f eklersen odalar\u0131n\u0131 burada g\u00f6rebilirsin.</div>'; return; }
-    wrap.innerHTML = '';
-    let any = false;
-    for (const n of names) {
-      const u = await fbGet(`users/${encodeURIComponent(n)}`);
-      if (u && u.currentRoom) {
-        any = true;
-        const row = document.createElement('div');
-        row.className = 'listCard';
-        row.innerHTML = `<span class="lcName">&#128100; ${n}<span class="lcSub">&nbsp;oda: ${u.currentRoom}</span></span>`;
-        const btn = document.createElement('button');
-        btn.className = 'miniBtn secondary';
-        btn.textContent = 'Kat\u0131l';
-        btn.onclick = () => joinRoom(u.currentRoom);
-        row.appendChild(btn);
-        wrap.appendChild(row);
-      }
-    }
-    if (!any) wrap.innerHTML = '<div class="emptyHint">\u015eu anda arkada\u015f\u0131n bir odada de\u011fil.</div>';
-  });
-}
-
-function createRoom() {
-  const code = genRoomCode();
-  fbPut(`rooms/${code}`, { host: activeProfile, createdAt: Date.now(), lastActivity: Date.now(), members: { [activeProfile]: Date.now() } }).then(() => {
-    enterRoomLobby(code, true);
-  });
-}
-document.getElementById('createRoomBtn').addEventListener('click', createRoom);
-
-const ROOM_STALE_MS = 20 * 60 * 1000; // 20 dakika hareketsiz kalan odalar terkedilmi\u015f say\u0131l\u0131r
-
-function joinRoom(codeRaw) {
-  const code = (codeRaw || document.getElementById('roomJoinInput').value).trim().toUpperCase();
-  if (!code) return;
-  fbGet(`rooms/${code}`).then(data => {
-    if (!data) {
-      showOverlay('Oda Bulunamad\u0131 &#10060;', 'Bu kodla bir oda bulunamad\u0131. Kodu kontrol et.', [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    const lastActivity = data.lastActivity || data.createdAt || 0;
-    if (Date.now() - lastActivity > ROOM_STALE_MS) {
-      fbDelete(`rooms/${code}`);
-      showOverlay('Oda Terkedilmi\u015f &#128683;', 'Bu oda uzun s\u00fcredir kullan\u0131lmad\u0131\u011f\u0131 i\u00e7in kapat\u0131ld\u0131. Yeni bir oda olu\u015ftur ya da g\u00fcncel bir kod iste.', [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    const existingMembers = data.members ? Object.keys(data.members) : [];
-    if (!existingMembers.includes(activeProfile) && existingMembers.length >= ROOM_MAX_MEMBERS) {
-      showOverlay('Oda Dolu &#128683;', `Bu oda zaten ${ROOM_MAX_MEMBERS} ki\u015filik dolu. Ba\u015fka bir odaya kat\u0131l ya da kendi odan\u0131 olu\u015ftur.`, [{ label: 'Tamam', action: () => {} }]);
-      return;
-    }
-    fbPatch(`rooms/${code}/members`, { [activeProfile]: Date.now() }).then(() => {
-      fbPatch(`rooms/${code}`, { lastActivity: Date.now() });
-      fbPost(`rooms/${code}/messages`, { name: 'Sistem', text: `${activeProfile} odaya kat\u0131ld\u0131 &#127881;`, time: Date.now(), sys: true });
-      enterRoomLobby(code, false);
-    });
-  });
-}
-document.getElementById('roomJoinBtn').addEventListener('click', () => joinRoom());
-document.getElementById('roomJoinInput').addEventListener('keydown', e => { if (e.key === 'Enter') joinRoom(); });
-
-function enterRoomLobby(code, isHost) {
-  currentRoomCode = code;
-  renderedMsgKeys = {};
-  document.getElementById('chatMessages').innerHTML = '';
-  document.getElementById('roomCodeBig').textContent = code;
-  fbPatch(`users/${encodeURIComponent(activeProfile)}`, { currentRoom: code });
-  showScreen('screenRoomLobby');
-  pollRoom();
-  clearInterval(roomPollTimer);
-  roomPollTimer = setInterval(pollRoom, 2500);
-}
-
-function pollRoom() {
-  if (!currentRoomCode) return;
-  fbGet(`rooms/${currentRoomCode}`).then(data => {
-    if (!data) { leaveRoom(true); return; }
-    const membersWrap = document.getElementById('roomMembersList');
-    membersWrap.innerHTML = '';
-    const members = data.members ? Object.keys(data.members) : [];
-    members.forEach(m => {
-      const row = document.createElement('div');
-      row.className = 'listCard';
-      row.innerHTML = `<span class="lcName">${m === data.host ? '&#128081;' : '&#128100;'} ${m}</span>`;
-      membersWrap.appendChild(row);
-    });
-    const msgsWrap = document.getElementById('chatMessages');
-    const msgs = data.messages ? Object.entries(data.messages).sort((a, b) => (a[1].time || 0) - (b[1].time || 0)) : [];
-    msgs.forEach(([key, m]) => {
-      if (renderedMsgKeys[key]) return;
-      renderedMsgKeys[key] = true;
-      const bubble = document.createElement('div');
-      if (m.sys) {
-        bubble.className = 'chatMsg system';
-        bubble.innerHTML = m.text;
-      } else {
-        bubble.className = 'chatMsg ' + (m.name === activeProfile ? 'me' : 'other');
-        const safeText = String(m.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        bubble.innerHTML = (m.name === activeProfile ? '' : `<span class="chatName">${m.name}</span>`) + safeText;
-      }
-      msgsWrap.appendChild(bubble);
-    });
-    msgsWrap.scrollTop = msgsWrap.scrollHeight;
-
-    if (data.game && data.game.active && data.game.startedAt !== mpLastGameStart && !mpActive) {
-      enterMultiplayerGame(data.game.levelIndex, data.game.hellMode, data.game.startedAt);
-    }
-
-    fbPatch(`rooms/${currentRoomCode}`, { lastActivity: Date.now() });
-  });
-}
-
-function sendChatMessage() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text || !currentRoomCode) return;
-  input.value = '';
-  fbPost(`rooms/${currentRoomCode}/messages`, { name: activeProfile, text, time: Date.now() }).then(pollRoom);
-}
-document.getElementById('chatSendBtn').addEventListener('click', sendChatMessage);
-document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendChatMessage(); });
-
-document.getElementById('roomPlayBtn').addEventListener('click', () => {
+document.getElementById('globalBackBtn').addEventListener('click', () => {
+  paused = true;
+  updateWalletDisplays();
+  showScreen('screenMenu');
+});
+document.getElementById('playBtn').addEventListener('click', () => {
   initAudio();
   hellMode = false;
-  pendingMultiplayerSelect = true;
-  document.getElementById('screenLevelsTitle').innerHTML = t('levels_title_mp').replace('{code}', currentRoomCode);
+  document.getElementById('screenLevelsTitle').textContent = 'Level Se\u00e7';
   currentPage = Math.floor(playerData.unlockedLevel / LEVELS_PER_PAGE);
   renderLevelGrid();
   showScreen('screenLevels');
 });
+document.getElementById('hellModeBtn').addEventListener('click', () => {
+  initAudio();
+  hellMode = true;
+  document.getElementById('screenLevelsTitle').innerHTML = '&#128293; Cehennem Modu';
+  currentPage = 0;
+  renderLevelGrid();
+  showScreen('screenLevels');
+});
+document.getElementById('shopBtn').addEventListener('click', () => { initAudio(); renderShop(); showScreen('screenShop'); });
+document.getElementById('avatarShopBtn').addEventListener('click', () => { initAudio(); renderAvatarShop(); showScreen('screenAvatarShop'); });
 
-function leaveRoom(silent) {
-  if (mpActive) leaveMultiplayer();
-  pendingMultiplayerSelect = false;
-  clearInterval(roomPollTimer);
-  roomPollTimer = null;
-  const codeBeingLeft = currentRoomCode;
-  if (codeBeingLeft && !silent) {
-    fbDelete(`rooms/${codeBeingLeft}/members/${encodeURIComponent(activeProfile)}`).then(() => {
-      fbGet(`rooms/${codeBeingLeft}/members`).then(remaining => {
-        const remainingCount = remaining ? Object.keys(remaining).length : 0;
-        if (remainingCount === 0) {
-          fbDelete(`rooms/${codeBeingLeft}`);
-        } else {
-          fbPost(`rooms/${codeBeingLeft}/messages`, { name: 'Sistem', text: `${activeProfile} odadan ayr\u0131ld\u0131`, time: Date.now(), sys: true });
-        }
-      });
-    });
-  }
-  fbDelete(`users/${encodeURIComponent(activeProfile)}/currentRoom`);
-  currentRoomCode = null;
-  showScreen('screenRooms');
-  loadFriendRooms();
-}
-document.getElementById('roomLeaveBtn').addEventListener('click', () => leaveRoom(false));
-
-// =====================================================================
-// GER\u00c7EK ZAMANLI \u00c7OK OYUNCULU (ayn\u0131 haritada 2-4 ki\u015fi birlikte oynama)
-// =====================================================================
-const ROOM_MAX_MEMBERS = 4;
-let mpActive = false;
-let mpPositions = {};
-let mpPositionsRaw = {};
-let mpRenderPositions = {};
-let mpLastRenderTime = null;
-let mpPushTimer = null;
-let mpPollTimer = null;
-let mpStream = null;
-let mpLastGameStart = null;
-let pendingMultiplayerSelect = false;
-
-// Firebase RTDB path'inde ilgili konuma (parent, key) ulasir; yol boyunca eksik d\u00fc\u011f\u00fcmleri olusturur.
-function resolveMpTarget(path) {
-  const parts = (path || '/').split('/').filter(Boolean);
-  let target = mpPositionsRaw;
-  for (let i = 0; i < parts.length - 1; i++) {
-    const key = parts[i];
-    if (!target[key] || typeof target[key] !== 'object') target[key] = {};
-    target = target[key];
-  }
-  return { target, key: parts.length ? parts[parts.length - 1] : null };
+function updateWalletDisplays() {
+  document.getElementById('walletMenu').textContent = playerData.coins;
+  document.getElementById('walletShop').textContent = playerData.coins;
+  document.getElementById('walletGame').textContent = playerData.coins;
+  const avEl = document.getElementById('walletAvatarShop');
+  if (avEl) avEl.textContent = playerData.coins;
+  document.getElementById('playerNameMenu').textContent = activeProfile || '';
+  applyWorldClass();
 }
 
-// 'put' olayi: verilen path'teki veriyi TAMAMEN degistirir (ilk yukleme / tam overwrite / silme).
-// ONEMLI: Firebase 'patch' olayindan farkli olarak put, o path'in disindaki kardes verileri etkilemez.
-function applyMpStreamPut(path, data) {
-  if (!path || path === '/') {
-    if (data && typeof data === 'object') {
-      const stamped = {};
-      Object.keys(data).forEach(k => { stamped[k] = Object.assign({}, data[k], { _recv: Date.now() }); });
-      mpPositionsRaw = stamped;
+// =====================================================================
+// LEVEL SE\u00c7\u0130M
+// =====================================================================
+const LEVELS_PER_PAGE = 10;
+let currentPage = 0;
+
+function renderPageDots(totalPages) {
+  const dotsWrap = document.getElementById('pageDots');
+  dotsWrap.innerHTML = '';
+  for (let i = 0; i < totalPages; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'pageDot' + (i === currentPage ? ' active' : '');
+    dotsWrap.appendChild(dot);
+  }
+}
+
+function goToPage(delta) {
+  const totalPages = Math.ceil(activeLevels().length / LEVELS_PER_PAGE);
+  const next = currentPage + delta;
+  if (next < 0 || next >= totalPages) return;
+  currentPage = next;
+  renderLevelGrid();
+}
+
+function renderLevelGrid() {
+  const lvls = activeLevels();
+  const totalPages = Math.ceil(lvls.length / LEVELS_PER_PAGE);
+  if (currentPage >= totalPages) currentPage = totalPages - 1;
+  if (currentPage < 0) currentPage = 0;
+
+  const pageTheme = hellMode ? HELL_THEME : WORLD_THEMES[Math.min(currentPage, WORLD_THEMES.length - 1)];
+  const worldLabelEl = document.getElementById('worldLabel');
+  worldLabelEl.innerHTML = (hellMode ? '&#128293; ' : '&#127757; ') + pageTheme.name;
+  worldLabelEl.style.color = pageTheme.accent;
+
+  const mapWrap = document.getElementById('levelMapWrap');
+  const wrap = document.getElementById('levelPath');
+  wrap.innerHTML = '';
+  const containerWidth = mapWrap.clientWidth || 300;
+  const start = currentPage * LEVELS_PER_PAGE;
+  const end = Math.min(start + LEVELS_PER_PAGE, lvls.length);
+  const count = end - start;
+  const rowH = 84;
+  const topPad = 50;
+  const totalHeight = topPad * 2 + (count - 1) * rowH;
+  wrap.style.height = totalHeight + 'px';
+
+  const pts = [];
+  for (let i = 0; i < count; i++) {
+    const x = containerWidth / 2 + Math.sin(i * 0.85) * (containerWidth * 0.28);
+    const y = topPad + i * rowH;
+    pts.push({ x, y });
+  }
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', containerWidth);
+  svg.setAttribute('height', totalHeight);
+  svg.style.position = 'absolute'; svg.style.left = '0'; svg.style.top = '0'; svg.style.zIndex = '0';
+  let d = '';
+  pts.forEach((p, i) => { d += (i === 0 ? 'M' : 'L') + p.x + ' ' + p.y + ' '; });
+  const path = document.createElementNS(svgNS, 'path');
+  path.setAttribute('d', d);
+  path.setAttribute('stroke', 'rgba(255,255,255,0.6)');
+  path.setAttribute('stroke-width', '6');
+  path.setAttribute('stroke-dasharray', '2 14');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('class', 'pathLine');
+  svg.appendChild(path);
+  wrap.appendChild(svg);
+
+  const unlockedLevel = getUnlockedLevel();
+  const completedLevels = getCompletedLevels();
+  const levelStars = getLevelStars();
+  pts.forEach((p, i) => {
+    const levelIndex = start + i;
+    const locked = levelIndex > unlockedLevel;
+    const done = completedLevels && completedLevels.includes(levelIndex);
+    const isCurrent = !locked && !done && levelIndex === unlockedLevel;
+    const stars = (levelStars && levelStars[levelIndex]) || 0;
+    const node = document.createElement('div');
+    node.className = 'levelNode' + (locked ? ' locked' : '') + (done ? ' done' : '') + (isCurrent ? ' current' : '');
+    node.style.left = (p.x - 29) + 'px';
+    node.style.top = (p.y - 29) + 'px';
+    if (locked) {
+      node.innerHTML = '&#128274;';
+    } else if (done) {
+      const starsHtml = '&#11088;'.repeat(stars) + '&#9734;'.repeat(3 - stars);
+      node.innerHTML = `<div class="starsRow">${starsHtml}</div><span class="small">${levelIndex + 1}</span>`;
     } else {
-      mpPositionsRaw = {};
+      node.innerHTML = `${levelIndex + 1}`;
     }
-    return;
-  }
-  const { target, key } = resolveMpTarget(path);
-  if (!key) return;
-  if (data === null) { delete target[key]; return; }
-  target[key] = (data && typeof data === 'object') ? Object.assign({}, data, { _recv: Date.now() }) : data;
-}
-
-// 'patch' olayi: SADECE belirtilen alt anahtarlari gunceller, digerlerine DOKUNMAZ.
-// Onceki hata buradaydi: patch de put gibi tam degistirme yapiyordu ve tek bir oyuncu
-// hareket ettiginde odadaki diger herkesin verisi anlik olarak siliniyordu (glitch/kaybolma).
-function applyMpStreamPatch(path, data) {
-  if (!path || path === '/') {
-    if (data && typeof data === 'object') {
-      Object.keys(data).forEach(k => {
-        if (data[k] === null) delete mpPositionsRaw[k];
-        else mpPositionsRaw[k] = Object.assign({}, data[k], { _recv: Date.now() });
+    if (!locked) {
+      node.addEventListener('click', () => {
+        currentLevelIndex = levelIndex;
+        loadLevel(levelIndex);
+        showScreen('screenGame');
+        updateWalletDisplays();
       });
     }
-    return;
-  }
-  const { target, key } = resolveMpTarget(path);
-  if (!key) return;
-  if (data === null) { delete target[key]; return; }
-  target[key] = (data && typeof data === 'object') ? Object.assign({}, target[key], data, { _recv: Date.now() }) : data;
+    wrap.appendChild(node);
+  });
+
+  renderPageDots(totalPages);
+  document.getElementById('prevPageBtn').disabled = currentPage === 0;
+  document.getElementById('nextPageBtn').disabled = currentPage === totalPages - 1;
+  document.getElementById('pageLabel').textContent = `B\u00f6l\u00fcm ${currentPage + 1} / ${totalPages}`;
 }
 
-// Konum verisini poll yerine gercek zamanli SSE akisiyla dinler.
-// Bu, her okuma icin ayri bir HTTP round-trip beklemeyi ortadan kaldirir
-// ve ortalama gecikmeyi (ms) ciddi olcude dusurur.
-function startMpPositionsStream() {
-  stopMpPositionsStream();
-  if (!currentRoomCode || typeof EventSource === 'undefined') return;
-  mpPositionsRaw = {};
-  const url = `${FIREBASE_DB_URL}/rooms/${currentRoomCode}/positions.json`;
-  try {
-    mpStream = new EventSource(url);
-    mpStream.addEventListener('put', e => {
-      try { const payload = JSON.parse(e.data); applyMpStreamPut(payload.path, payload.data); } catch (err) {}
-    });
-    mpStream.addEventListener('patch', e => {
-      try { const payload = JSON.parse(e.data); applyMpStreamPatch(payload.path, payload.data); } catch (err) {}
-    });
-    mpStream.onerror = () => {
-      // Baglanti koptuysa EventSource kendini otomatik yeniden dener; ekstra guvence olarak
-      // birkac saniye icinde hala kapaliysa manuel yeniden baslat.
-      setTimeout(() => {
-        if (mpActive && mpStream && mpStream.readyState === 2) startMpPositionsStream();
-      }, 1500);
-    };
-  } catch (err) {
-    mpStream = null;
-  }
-}
-function stopMpPositionsStream() {
-  if (mpStream) { mpStream.close(); mpStream = null; }
-  mpPositionsRaw = {};
-}
+document.getElementById('prevPageBtn').addEventListener('click', () => goToPage(-1));
+document.getElementById('nextPageBtn').addEventListener('click', () => goToPage(1));
 
-// Oda sahibi (veya herhangi bir \u00fcye) bir b\u00f6l\u00fcm se\u00e7ip ba\u015flat\u0131r;
-// odadaki herkes otomatik olarak ayn\u0131 b\u00f6l\u00fcme, ayn\u0131 anda girer.
-function startMultiplayerLevel(levelIndex) {
-  if (!currentRoomCode) return;
-  const startedAt = Date.now();
-  fbPatch(`rooms/${currentRoomCode}`, { game: { active: true, levelIndex, hellMode, startedAt, startedBy: activeProfile } }).then(() => {
-    fbPost(`rooms/${currentRoomCode}/messages`, { name: 'Sistem', text: `${activeProfile} ${levelIndex + 1}. b\u00f6l\u00fcm\u00fc canl\u0131 ba\u015flatt\u0131 &#127918;`, time: Date.now(), sys: true });
-    enterMultiplayerGame(levelIndex, hellMode, startedAt);
+(function () {
+  let sx = null, sy = null;
+  const wrap = document.getElementById('levelMapWrap');
+  wrap.addEventListener('touchstart', e => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; }, { passive: true });
+  wrap.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) goToPage(dx < 0 ? 1 : -1);
+    sx = null; sy = null;
+  });
+})();
+
+// =====================================================================
+// MA\u011eAZA (G\u00d6R\u00dcN\u00dcMLER - PET D\u00dcKKANI)
+// =====================================================================
+function renderShop() {
+  updateWalletDisplays();
+  const grid = document.getElementById('shopGrid');
+  grid.innerHTML = '';
+  PETS.forEach(pet => {
+    const card = document.createElement('div');
+    card.className = 'petCard rarity-' + pet.rarity;
+    const swatch = document.createElement('div');
+    swatch.className = 'petSquare';
+    applyVisualToElement(swatch, pet.id, pet.color);
+    const name = document.createElement('div');
+    name.className = 'petName';
+    name.textContent = pet.name;
+    const rarity = document.createElement('div');
+    rarity.className = 'petRarity';
+    rarity.textContent = RARITY_LABEL[pet.rarity];
+
+    const owned = playerData.ownedPets.includes(pet.id);
+    const selected = playerData.selectedPet === pet.id;
+    const btn = document.createElement('button');
+    if (selected) {
+      btn.innerHTML = 'Se\u00e7ili &#10003;'; btn.className = 'selected'; btn.disabled = true;
+    } else if (owned) {
+      btn.textContent = 'Se\u00e7'; btn.className = 'owned';
+      btn.onclick = () => { playerData.selectedPet = pet.id; savePlayerData(); renderShop(); };
+    } else {
+      btn.innerHTML = `&#129689;${pet.price}`;
+      btn.disabled = playerData.coins < pet.price;
+      btn.onclick = () => {
+        if (playerData.coins >= pet.price) {
+          playerData.coins -= pet.price;
+          playerData.ownedPets.push(pet.id);
+          playerData.selectedPet = pet.id;
+          playBuySound();
+          savePlayerData();
+          renderShop();
+        }
+      };
+    }
+    card.appendChild(swatch); card.appendChild(name); card.appendChild(rarity); card.appendChild(btn);
+    grid.appendChild(card);
   });
 }
 
-function enterMultiplayerGame(levelIndex, hell, startedAt) {
-  hellMode = !!hell;
-  mpActive = true;
-  mpLastGameSt
+// =====================================================================
+// AVATAR (\u00c7ER\u00c7EVE) D\u00dcKKANI - ayn\u0131 g\u00f6rsel fonksiyonlar\u0131 kullan\u0131l\u0131r
+// =====================================================================
+function renderAvatarShop() {
+  updateWalletDisplays();
+  const grid = document.getElementById('avatarGrid');
+  grid.innerHTML = '';
+  AVATAR_FRAMES.forEach(frame => {
+    const card = document.createElement('div');
+    card.className = 'petCard rarity-' + frame.rarity;
+    const swatch = document.createElement('div');
+    swatch.className = 'petSquare';
+    applyVisualToElement(swatch, frame.id, frame.color);
+    const name = document.createElement('div');
+    name.className = 'petName';
+    name.textContent = frame.name;
+    const rarity = document.createElement('div');
+    rarity.className = 'petRarity';
+    rarity.textContent = RARITY_LABEL[frame.rarity];
+
+    const owned = playerData.ownedFrames.includes(frame.id);
+    const selected = playerData.selectedFrame === frame.id;
+    const btn = document.createElement('button');
+    if (selected) {
+      btn.innerHTML = 'Se\u00e7ili &#10003;'; btn.className = 'selected'; btn.disabled = true;
+    } else if (owned) {
+      btn.textContent = 'Se\u00e7'; btn.className = 'owned';
+      btn.onclick = () => { playerData.selectedFrame = frame.id; savePlayerData(); renderAvatarShop(); };
+    } else {
+      btn.innerHTML = `&#129689;${frame.price}`;
+      btn.disabled = playerData.coins < frame.price;
+      btn.onclick = () => {
+        if (playerData.coins >= frame.price) {
+          playerData.coins -= frame.price;
+          playerData.ownedFrames.push(frame.id);
+          playerData.selectedFrame = frame.id;
+          playBuySound();
+          savePlayerData();
+          renderAvatarShop();
+        }
+      };
+    }
+    card.appendChild(swatch); card.appendChild(name); card.appendChild(rarity); card.appendChild(btn);
+    grid.appendChild(card);
+  });
+}
+
+// =====================================================================
+// PROSED\u00dcREL LEVEL \u00dcRET\u0130C\u0130
+// =====================================================================
+function mulberry32(seed) {
+  return function() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+const MAX_LEVELS = 200;
+const levels = [];
+
+for (let i = 0; i < MAX_LEVELS; i++) {
+  const rng = mulberry32(i + 999);
+
+  // 200 level boyunca harita kademeli olarak uzuyor (son leveller
+  // eskisiyle benzer bir tavana ula\u015f\u0131yor ama art\u0131\u015f \u00e7ok daha kademeli).
+  const mapWidth = 1400 + Math.floor(i * 42);
+  const generatedPlatforms = [];
+  const generatedCoins = [];
+  const generatedSpikes = [];
+
+  generatedPlatforms.push({ x: 0, y: 260, w: 160, h: 60 });
+
+  // Zorluk 200 level boyunca yava\u015f\u00e7a artar: platformlar hafif\u00e7e
+  // k\u00fc\u00e7\u00fcl\u00fcr ve aralar aral\u0131k a\u00e7ar, ama hi\u00e7bir zaman abart\u0131l\u0131 olmaz.
+  const difficulty = Math.min(1, i / (MAX_LEVELS - 1));
+  const minPWidth = Math.max(62, Math.round(80 - difficulty * 18));
+  const varPWidth = Math.max(45, Math.round(70 - difficulty * 16));
+  const gapBonus = Math.round(difficulty * 25);
+
+  let currentX = 180;
+  let platformCounter = 0;
+  while (currentX < mapWidth - 180) {
+    const pWidth = minPWidth + Math.floor(rng() * varPWidth);
+    const pY = 190 + Math.floor(rng() * 60);
+
+    generatedPlatforms.push({ x: currentX, y: pY, w: pWidth, h: 25 });
+    platformCounter++;
+
+    let hasSpike = false;
+    let spikeX = 0;
+
+    // Deseni: her 3 platformda bir, yani 4. platforma diken konuyor.
+    // Diken platformun tam ortas\u0131na (\u00e7ok hafif bir kaymayla) yerle\u015ftiriliyor,
+    // b\u00f6ylece hem g\u00f6rsel olarak ortalanm\u0131\u015f olur hem de kenarlardan
+    // rahatl\u0131kla ge\u00e7ilebilir (orta zorluk).
+    if (i > 0 && platformCounter % 4 === 0 && pWidth >= 100) {
+      hasSpike = true;
+      const center = currentX + pWidth / 2;
+      const jitter = (rng() - 0.5) * (pWidth * 0.06); // ortadan neredeyse hi\u00e7 sapma
+      spikeX = Math.round(center + jitter - 8); // 8 = diken geni\u015fli\u011finin (16) yar\u0131s\u0131
+      generatedSpikes.push({ x: spikeX, y: pY - 14, w: 16, h: 14 });
+    }
+
+    if (rng() < 0.65) {
+      const coinX = currentX + Math.floor(rng() * (pWidth - 20));
+      if (hasSpike && Math.abs(coinX - spikeX) < 25) {
+        generatedCoins.push({ x: coinX, y: pY - 65 });
+      } else {
+        generatedCoins.push({ x: coinX, y: pY - 30 });
+      }
+    }
+
+    currentX += pWidth + 55 + gapBonus + Math.floor(rng() * 50);
+  }
+
+  generatedPlatforms.push({ x: mapWidth - 140, y: 240, w: 140, h: 80 });
+
+  levels.push({
+    width: mapWidth,
+    height: 320,
+    playerStart: { x: 40, y: 200 },
+    door: { x: mapWidth - 60, y: 180, w: 32, h: 60 },
+    platforms: generatedPlatforms,
+    coins: generatedCoins,
+    spikes: generatedSpikes
+  });
+}
+
+// =====================================================================
+// CEHENNEM MODU (10 a\u015fama, her platformda diken, orta/b\u00fcy\u00fck
+// platformlarda 2 diken \u2014 ama her zaman ge\u00e7ilebilir)
+// =====================================================================
+const HELL_MAX_LEVELS = 10;
+const hellLevels = [];
+
+for (let i = 0; i < HELL_MAX_LEVELS; i++) {
+  const rng = mulberry32(i + 7331);
+
+  const mapWidth = 1500 + Math.floor(i * 70);
+  const generatedPlatforms = [];
+  const generatedCoins = [];
+  const generatedSpikes = [];
+
+  // G\u00fcvenli ba\u015flang\u0131\u00e7 platformu \u2014 diken yok.
+  generatedPlatforms.push({ x: 0, y: 260, w: 160, h: 60 });
+
+  const difficulty = i / (HELL_MAX_LEVELS - 1);
+  const spikeW = 16;
+
+  let currentX = 200;
+  while (currentX < mapWidth - 220) {
+    // Platformlar orta/b\u00fcy\u00fck boyda tutuluyor ki 2 diken s\u0131\u011fabilsin
+    // ve kenarlarda hep ge\u00e7ilebilir bo\u015fluk kals\u0131n.
+    const pWidth = 95 + Math.floor(rng() * (75 + difficulty * 30));
+    const pY = 185 + Math.floor(rng() * 65);
+
+    generatedPlatforms.push({ x: currentX, y: pY, w: pWidth, h: 25 });
+
+    // K\u00fc\u00e7\u00fck platform: 1 diken (ortada). Orta/b\u00fcy\u00fck platform: 2 diken
+    // (sola ve sa\u011fa yak\u0131n ama u\u00e7lardan uzak, ortada ge\u00e7i\u015f pay\u0131 b\u0131rakarak).
+    if (pWidth < 130) {
+      const center = currentX + pWidth / 2;
+      const jitter = (rng() - 0.5) * (pWidth * 0.08);
+      const sx = Math.round(center + jitter - spikeW / 2);
+      generatedSpikes.push({ x: sx, y: pY - 14, w: spikeW, h: 14 });
+    } else {
+      const leftX = Math.round(currentX + pWidth * 0.27 - spikeW / 2);
+      const rightX = Math.round(currentX + pWidth * 0.73 - spikeW / 2);
+      generatedSpikes.push({ x: leftX, y: pY - 14, w: spikeW, h: 14 });
+      generatedSpikes.push({ x: rightX, y: pY - 14, w: spikeW, h: 14 });
+    }
+
+    if (rng() < 0.6) {
+      const coinX = currentX + Math.floor(pWidth / 2) - 8;
+      generatedCoins.push({ x: coinX, y: pY - 68 });
+    }
+
+    currentX += pWidth + 65 + Math.floor(difficulty * 22) + Math.floor(rng() * 45);
+  }
+
+  // G\u00fcvenli var\u0131\u015f platformu \u2014 diken yok.
+  generatedPlatforms.push({ x: mapWidth - 150, y: 240, w: 150, h: 80 });
+
+  hellLevels.push({
+    width: mapWidth,
+    height: 320,
+    playerStart: { x: 40, y: 200 },
+    door: { x: mapWidth - 65, y: 180, w: 32, h: 60 },
+    platforms: generatedPlatforms,
+    coins: generatedCoins,
+    spikes: generatedSpikes
+  });
+}
+
+function activeLevels() { return hellMode ? hellLevels : levels; }
+function getUnlockedLevel() { return hellMode ? playerData.hellUnlockedLevel : playerData.unlockedLevel; }
+function setUnlockedLevel(v) { if (hellMode) playerData.hellUnlockedLevel = v; else playerData.unlockedLevel = v; }
+function getCompletedLevels() { return hellMode ? playerData.hellCompletedLevels : playerData.completedLevels; }
+function getLevelStars() { return hellMode ? playerData.hellLevelStars : playerData.levelStars; }
+
+// =====================================================================
+// OYUN MOTORU & D\u00d6NG\u00dcS\u00dc
+// =====================================================================
+const DESIGN_H = 320;
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 300));
+resizeCanvas();
+
+let currentLevelIndex = 0;
+let currentLevel = null;
+
+let player = { x: 0, y: 0, vx: 0, vy: 0, size: 18, grounded: false };
+let coins = [];
+let spikes = [];
+let ultraTrail = [];
+let score = 0;
+let totalLevelCoins = 0;
+let lives = 3;
+let paused = true;
+
+let keys = { left: false, right: false };
+
+function loadLevel(idx) {
+  currentLevelIndex = idx;
+  currentLevel = activeLevels()[idx];
+  resizeCanvas();
+
+  player.x = currentLevel.playerStart.x;
+  player.y = currentLevel.playerStart.y;
+  player.vx = 0; player.vy = 0;
+  player.grounded = false;
+
+  coins = currentLevel.coins.map(c => ({ ...c, collected: false }));
+  spikes = currentLevel.spikes.map(s => ({ ...s }));
+  ultraTrail = [];
+
+  score = 0;
+  totalLevelCoins = coins.length;
+  lives = 3;
+  paused = false;
+
+  document.getElementById('levelNum').textContent = idx + 1;
+  document.getElementById('totalLevels').textContent = activeLevels().length;
+  updateUi();
+}
+
+function updateUi() {
+  document.getElementById('score').textContent = score;
+  document.getElementById('total').textContent = totalLevelCoins;
+  const full = '&#10084;&#65039;'.repeat(Math.max(0, lives));
+  const empty = '&#129293;'.repeat(Math.max(0, 3 - lives));
+  document.getElementById('livesWrap').innerHTML = full + empty;
+  document.getElementById('walletGame').textContent = playerData.coins;
+}
+
+// Kontroller
+const isTouch = ('ontouchstart' in window);
+const startEvent = isTouch ? 'touchstart' : 'mousedown';
+const endEvent = isTouch ? 'touchend' : 'mouseup';
+
+function bindBtn(id, actionStart, actionEnd) {
+  const el = document.getElementById(id);
+  el.addEventListener(startEvent, e => { e.preventDefault(); actionStart(); });
+  if (actionEnd) {
+    el.addEventListener(endEvent, e => { e.preventDefault(); actionEnd(); });
+    el.addEventListener('touchleave', e => { e.preventDefault(); actionEnd(); });
+    el.addEventListener('mouseleave', e => { e.preventDefault(); actionEnd(); });
+  }
+}
+
+bindBtn('leftBtn', () => keys.left = true, () => keys.left = false);
+bindBtn('rightBtn', () => keys.right = true, () => keys.right = false);
+bindBtn('jumpBtn', () => { if (player.grounded) { player.vy = -7.2; player.grounded = false; playJumpSound(); } });
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = true;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = true;
+  if (e.key === 'ArrowUp' || e.key === 'w' || e.key === ' ') {
+    if (player.grounded) { player.vy = -7.2; player.grounded = false; playJumpSound(); }
+  }
+});
+window.addEventListener('keyup', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = false;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = false;
+});
+
+function showOverlay(title, text, buttonsHtml) {
+  paused = true;
+  document.getElementById('overlayTitle').innerHTML = title;
+  document.getElementById('overlayText').innerHTML = text.replace(/\n/g, '<br>');
+  const btnWrap = document.getElementById('overlayButtons');
+  btnWrap.innerHTML = '';
+  buttonsHtml.forEach(b => {
+    const btn = document.createElement('button');
+    btn.textContent = b.label;
+    btn.className = 'bigBtn' + (b.secondary ? ' secondary' : '');
+    btn.onclick = () => {
+      document.getElementById('overlay').style.display = 'none';
+      b.action();
+    };
+    btnWrap.appendChild(btn);
+  });
+  document.getElementById('overlay').style.display = 'flex';
+}
+
+function handleDeath() {
+  playHitSound();
+  lives--;
+  updateUi();
+  if (lives <= 0) {
+    showOverlay('Oyun Bitti &#128126;', 'Canlar\u0131n t\u00fckendi. Tekrar dene!', [
+      { label: 'Yeniden Ba\u015fla', action: () => loadLevel(currentLevelIndex) },
+      { label: 'Haritaya D\u00f6n', secondary: true, action: () => { showScreen('screenLevels'); renderLevelGrid(); } }
+    ]);
+  } else {
+    player.x = currentLevel.playerStart.x;
+    player.y = currentLevel.playerStart.y;
+    player.vx = 0; player.vy = 0;
+    player.grounded = false;
+    paused = false;
+  }
+}
+
+let rainbowHue = 0;
+function update(dt) {
+  if (paused) return;
+
+  rainbowHue = (rainbowHue + 2) % 360;
+
+  if (keys.left) player.vx = -3.2;
+  else if (keys.right) player.vx = 3.2;
+  else player.vx = 0;
+
+  player.vy += 0.32;
+
+  player.x += player.vx;
+  player.y += player.vy;
+
+  player.grounded = false;
+
+  currentLevel.platforms.forEach(p => {
+    if (player.x + player.size > p.x && player.x < p.x + p.w &&
+        player.y + player.size > p.y && player.y < p.y + p.h) {
+      if (player.vy > 0 && player.y + player.size - player.vy <= p.y + 6) {
+        player.y = p.y - player.size;
+        player.vy = 0;
+        player.grounded = true;
+      }
+    }
+  });
+
+  coins.forEach(c => {
+    if (!c.collected &&
+        player.x + player.size > c.x && player.x < c.x + 16 &&
+        player.y + player.size > c.y && player.y < c.y + 16) {
+      c.collected = true;
+      score++;
+      playerData.coins += 5;
+      playCoinSound();
+      savePlayerData();
+      updateUi();
+    }
+  });
+
+  spikes.forEach(s => {
+    if (player.x + player.size > s.x + 2 && player.x < s.x + s.w - 2 &&
+        player.y + player.size > s.y + 2 && player.y < s.y + s.h) {
+      paused = true;
+      handleDeath();
+    }
+  });
+
+  if (player.y > currentLevel.height + 40) {
+    paused = true;
+    handleDeath();
+  }
+
+  const d = currentLevel.door;
+  if (player.x + player.size > d.x && player.x < d.x + d.w &&
+      player.y + player.size > d.y && player.y < d.y + d.h) {
+    paused = true;
+    playLevelCompleteSound();
+
+    const completedArr = getCompletedLevels();
+    if (!completedArr.includes(currentLevelIndex)) {
+      completedArr.push(currentLevelIndex);
+    }
+    const currentStars = starsForCoins(score, totalLevelCoins);
+    const starsObj = getLevelStars();
+    const oldStars = (starsObj && starsObj[currentLevelIndex]) || 0;
+    if (currentStars > oldStars) {
+      starsObj[currentLevelIndex] = currentStars;
+    }
+
+    if (currentLevelIndex === getUnlockedLevel() && getUnlockedLevel() < activeLevels().length - 1) {
+      setUnlockedLevel(getUnlockedLevel() + 1);
+    }
+    savePlayerData();
+    applyWorldClass();
+
+    const starString = '&#11088;'.repeat(currentStars) + '&#9734;'.repeat(3 - currentStars);
+    showOverlay('Harika! &#127881;', `B\u00f6l\u00fcm\u00fc tamamlad\u0131n!\nSkorun: ${starString}\n\nToplam Jetonun: &#129689;${playerData.coins}`, [
+      { label: 'Sonraki B\u00f6l\u00fcm', action: () => {
+        if (currentLevelIndex < activeLevels().length - 1) {
+          loadLevel(currentLevelIndex + 1);
+        } else {
+          showOverlay('Tebrikler! &#127942;', 'T\u00fcm b\u00f6l\u00fcmleri ba\u015far\u0131yla bitirdin!', [
+            { label: 'Ana Men\u00fcye D\u00f6n', action: () => showScreen('screenMenu') }
+          ]);
+        }
+      }},
+      { label: 'B\u00f6l\u00fcm Se\u00e7imi', secondary: true, action: () => { showScreen('screenLevels'); renderLevelGrid(); } }
+    ]);
+  }
+}
+
+// ---------- Arkaplan (d\u00fcnya temal\u0131) \u00e7izim yard\u0131mc\u0131lar\u0131 ----------
+function drawCloudPuff(x, y, r) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.arc(x + r * 0.8, y + 6, r * 0.7, 0, Math.PI * 2);
+  ctx.arc(x - r * 0.8, y + 8, r * 0.6, 0, Math.PI * 2);
+  ctx.fill();
+}
+function drawClouds(camX, w, h) {
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  for (let i = 0; i < 9; i++) {
+    const baseX = i * 260;
+    let cx = ((baseX - camX * 0.15) % (w + 300));
+    if (cx < -150) cx += (w + 300);
+    const cy = 40 + (i % 3) * 46 + Math.sin(i) * 10;
+    drawCloudPuff(cx, cy, 28 + (i % 3) * 9);
+  }
+}
+function drawMountainLayer(offset, baseY, w, h, amp) {
+  ctx.beginPath();
+  ctx.moveTo(-50, h);
+  const step = 80;
+  for (let x = -50; x <= w + 50; x += step) {
+    const xx = x - (offset % step);
+    const yy = baseY - Math.abs(Math.sin((xx + offset) * 0.01)) * amp;
+    ctx.lineTo(xx, yy);
+  }
+  ctx.lineTo(w + 50, h);
+  ctx.closePath();
+  ctx.fill();
+}
+function drawDuskScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(255,244,214,0.9)';
+  ctx.beginPath(); ctx.arc(w * 0.82, h * 0.16, 28, 0, Math.PI * 2); ctx.fill();
+
+  ctx.fillStyle = 'rgba(40,20,70,0.5)';
+  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
+  ctx.fillStyle = 'rgba(25,10,50,0.7)';
+  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
+
+  for (let i = 0; i < 26; i++) {
+    const span = w + 200;
+    let fx = (i * 137 - camX * 0.2) % span;
+    if (fx < -100) fx += span;
+    const fy = h * 0.32 + ((i * 53) % (h * 0.35));
+    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 700 + i));
+    ctx.fillStyle = `rgba(255,214,102,${flick})`;
+    ctx.beginPath(); ctx.arc(fx, fy, 2.4, 0, Math.PI * 2); ctx.fill();
+  }
+}
+function hashRand(seed) {
+  const x = Math.sin(seed * 127.1) * 43758.5453;
+  return x - Math.floor(x);
+}
+function drawCityLayer(camX, w, horizonY, parallax, spacing, minH, maxH, bodyColor, seedOffset, windowColor, windowDensity) {
+  const shift = (camX * parallax) % spacing;
+  const startI = Math.floor((0 - shift) / spacing) - 1;
+  const endI = Math.floor((w - shift) / spacing) + 2;
+  for (let i = startI; i <= endI; i++) {
+    const seed = i + seedOffset;
+    const bw = spacing * (0.62 + hashRand(seed * 3.1) * 0.3);
+    const bx = i * spacing + shift + (spacing - bw) / 2;
+    const bh = minH + hashRand(seed * 7.7) * (maxH - minH);
+    const by = horizonY - bh;
+
+    ctx.fillStyle = bodyColor;
+    ctx.fillRect(bx, by, bw, bh);
+
+    ctx.strokeStyle = windowColor;
+    ctx.globalAlpha = 0.35;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(bx + 0.5, by + 0.5, bw - 1, bh - 1);
+    ctx.globalAlpha = 1;
+
+    if (hashRand(seed * 9.3) > 0.6) {
+      const antX = bx + bw * (0.3 + hashRand(seed * 11) * 0.4);
+      ctx.strokeStyle = windowColor;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(antX, by);
+      ctx.lineTo(antX, by - 10 - hashRand(seed * 13) * 12);
+      ctx.stroke();
+    }
+
+    const winW = 5, winH = 6, gapX = 4, gapY = 6;
+    const cols = Math.max(1, Math.floor((bw - 6) / (winW + gapX)));
+    const rows = Math.max(1, Math.floor((bh - 10) / (winH + gapY)));
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const wSeed = seed * 100 + r * cols + c;
+        if (hashRand(wSeed) < windowDensity) {
+          const wx = bx + 4 + c * (winW + gapX);
+          const wy = by + 6 + r * (winH + gapY);
+          const lit = hashRand(wSeed * 1.7) > 0.4;
+          ctx.fillStyle = lit ? windowColor : 'rgba(255,255,255,0.06)';
+          ctx.globalAlpha = lit ? (0.55 + hashRand(wSeed * 2.3) * 0.4) : 1;
+          ctx.fillRect(wx, wy, winW, winH);
+          ctx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+}
+function drawRetroScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  for (let i = 0; i < 50; i++) {
+    const sx = (i * 97) % w;
+    const sy = (i * 53) % (h * 0.42);
+    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 500 + i));
+    ctx.globalAlpha = flick;
+    ctx.fillRect(sx, sy, 2, 2);
+  }
+  ctx.globalAlpha = 1;
+
+  const horizonY = h * 0.62;
+
+  const moonX = w * 0.72, moonY = h * 0.16, moonR = Math.min(w, h) * 0.13;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,224,255,0.9)';
+  ctx.shadowBlur = 34;
+  const moonGrad = ctx.createRadialGradient(moonX - moonR * 0.3, moonY - moonR * 0.3, moonR * 0.1, moonX, moonY, moonR);
+  moonGrad.addColorStop(0, '#fffef2');
+  moonGrad.addColorStop(0.55, '#e8f7ff');
+  moonGrad.addColorStop(1, '#9fe8ff');
+  ctx.fillStyle = moonGrad;
+  ctx.beginPath(); ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  ctx.save();
+  ctx.beginPath(); ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2); ctx.clip();
+  ctx.strokeStyle = 'rgba(255,46,151,0.35)';
+  ctx.lineWidth = 3;
+  for (let s = -2; s <= 2; s++) {
+    ctx.beginPath();
+    ctx.moveTo(moonX - moonR, moonY + s * (moonR * 0.4));
+    ctx.lineTo(moonX + moonR, moonY + s * (moonR * 0.4));
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  drawCityLayer(camX, w, horizonY - 4, 0.05, 70, h * 0.14, h * 0.32, 'rgba(22,10,46,0.9)', 500, 'rgba(0,224,255,0.55)', 0.4);
+  drawCityLayer(camX, w, horizonY, 0.12, 46, h * 0.16, h * 0.42, 'rgba(8,4,18,0.97)', 5000, 'rgba(255,46,151,0.95)', 0.62);
+
+  ctx.strokeStyle = 'rgba(255,46,151,0.8)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, horizonY); ctx.lineTo(w, horizonY); ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(0,224,255,0.5)';
+  ctx.lineWidth = 1.5;
+  const vanishX = w / 2;
+  const shift = (camX * 0.4) % 60;
+  for (let i = -14; i <= 14; i++) {
+    const targetX = vanishX + i * 70 - shift * (i === 0 ? 0 : Math.sign(i));
+    ctx.beginPath(); ctx.moveTo(vanishX, horizonY); ctx.lineTo(targetX, h); ctx.stroke();
+  }
+  for (let j = 1; j <= 7; j++) {
+    const t = j / 7;
+    const y = horizonY + (h - horizonY) * t * t;
+    ctx.globalAlpha = 0.15 + t * 0.5;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+function drawSnowScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  drawMountainLayer(camX * 0.03, h * 0.55, w, h, 70);
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  drawMountainLayer(camX * 0.07, h * 0.62, w, h, 100);
+
+  for (let i = 0; i < 40; i++) {
+    const span = w + 200;
+    let sx = (i * 53 - camX * 0.25) % span;
+    if (sx < -20) sx += span;
+    const fallOffset = (performance.now() / 20 + i * 47) % (h + 40);
+    const sy = fallOffset - 20;
+    const size = 1.4 + (i % 3) * 0.6;
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.beginPath(); ctx.arc(sx, sy, size, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function drawLavaScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(40,10,6,0.85)';
+  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
+  ctx.fillStyle = 'rgba(20,4,2,0.9)';
+  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
+
+  for (let i = 0; i < 24; i++) {
+    const span = w + 200;
+    let fx = (i * 97 - camX * 0.2) % span;
+    if (fx < -50) fx += span;
+    const fy = h * 0.35 + ((i * 61) % (h * 0.5));
+    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 300 + i));
+    ctx.fillStyle = `rgba(255,${100 + Math.floor(80 * flick)},40,${flick})`;
+    ctx.beginPath(); ctx.arc(fx, fy, 2 + flick, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function drawSpaceScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  for (let i = 0; i < 60; i++) {
+    const sx = (i * 83) % w;
+    const sy = (i * 47) % h;
+    const flick = 0.3 + 0.7 * Math.abs(Math.sin(performance.now() / 600 + i));
+    ctx.globalAlpha = flick;
+    ctx.fillRect(sx, sy, 1.5, 1.5);
+  }
+  ctx.globalAlpha = 1;
+
+  const planets = [
+    { r: 26, colorA: '#ff9d4e', colorB: '#7b2ff7', yFrac: 0.22, speed: 0.05 },
+    { r: 14, colorA: '#4ea8ff', colorB: '#00f0ff', yFrac: 0.55, speed: 0.09 }
+  ];
+  planets.forEach((p, idx) => {
+    const span = w + 300;
+    let px = (idx * 400 - camX * p.speed) % span;
+    if (px < -100) px += span;
+    const py = h * p.yFrac;
+    const grad = ctx.createRadialGradient(px - p.r * 0.3, py - p.r * 0.3, p.r * 0.1, px, py, p.r);
+    grad.addColorStop(0, p.colorA);
+    grad.addColorStop(1, p.colorB);
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(px, py, p.r, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function drawAuroraPeakScene(camX, w, h) {
+  ctx.fillStyle = 'rgba(30,8,50,0.5)';
+  drawMountainLayer(camX * 0.04, h * 0.5, w, h, 90);
+  ctx.fillStyle = 'rgba(15,3,30,0.75)';
+  drawMountainLayer(camX * 0.09, h * 0.58, w, h, 130);
+
+  const t = performance.now() / 1000;
+  for (let band = 0; band < 3; band++) {
+    ctx.beginPath();
+    for (let x = -50; x <= w + 50; x += 20) {
+      const y = h * 0.22 + band * 22 + Math.sin(x * 0.01 + t + band) * 18;
+      if (x === -50) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    const hue = (t * 40 + band * 60) % 360;
+    ctx.strokeStyle = `hsla(${hue}, 90%, 65%, 0.55)`;
+    ctx.lineWidth = 6;
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  for (let i = 0; i < 20; i++) {
+    const span = w + 200;
+    let sx = (i * 91 - camX * 0.15) % span;
+    if (sx < -50) sx += span;
+    const sy = h * 0.15 + ((i * 37) % (h * 0.3));
+    const flick = 0.3 + 0.7 * Math.abs(Math.sin(performance.now() / 500 + i));
+    ctx.globalAlpha = flick;
+    ctx.beginPath(); ctx.arc(sx, sy, 1.6, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawHellScene(camX, w, h) {
+  // K\u0131z\u0131l g\u00fcne\u015f
+  const sunX = w * 0.78;
+  const sunY = h * 0.24;
+  const sunR = Math.min(w, h) * 0.16;
+  const sunGlow = ctx.createRadialGradient(sunX, sunY, sunR * 0.2, sunX, sunY, sunR * 2.2);
+  sunGlow.addColorStop(0, 'rgba(255,120,40,0.55)');
+  sunGlow.addColorStop(1, 'rgba(255,60,20,0)');
+  ctx.fillStyle = sunGlow;
+  ctx.beginPath(); ctx.arc(sunX, sunY, sunR * 2.2, 0, Math.PI * 2); ctx.fill();
+  const sunGrad = ctx.createRadialGradient(sunX - sunR * 0.3, sunY - sunR * 0.3, sunR * 0.1, sunX, sunY, sunR);
+  sunGrad.addColorStop(0, '#ffdd66');
+  sunGrad.addColorStop(0.5, '#ff5a1f');
+  sunGrad.addColorStop(1, '#c8180a');
+  ctx.fillStyle = sunGrad;
+  ctx.beginPath(); ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2); ctx.fill();
+
+  // Uzak volkanik da\u011f siluetleri
+  ctx.fillStyle = 'rgba(45,8,4,0.7)';
+  drawMountainLayer(camX * 0.03, h * 0.5, w, h, 95);
+  ctx.fillStyle = 'rgba(25,4,2,0.85)';
+  drawMountainLayer(camX * 0.07, h * 0.6, w, h, 135);
+
+  // Da\u011f zirvelerinden y\u00fckselen lav/duman parlamas\u0131
+  for (let i = 0; i < 5; i++) {
+    const span = w + 260;
+    let fx = (i * 210 - camX * 0.07) % span;
+    if (fx < -60) fx += span;
+    const fy = h * 0.42;
+    const flick = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 500 + i));
+    ctx.fillStyle = `rgba(255,${90 + Math.floor(60 * flick)},30,${0.5 * flick})`;
+    ctx.beginPath(); ctx.arc(fx, fy, 20 + 8 * flick, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // U\u00e7u\u015fan k\u0131v\u0131lc\u0131mlar
+  for (let i = 0; i < 26; i++) {
+    const span = w + 200;
+    let fx = (i * 87 - camX * 0.2) % span;
+    if (fx < -50) fx += span;
+    const fy = h * 0.3 + ((i * 53) % (h * 0.6));
+    const flick = 0.4 + 0.6 * Math.abs(Math.sin(performance.now() / 280 + i));
+    ctx.fillStyle = `rgba(255,${110 + Math.floor(70 * flick)},40,${flick})`;
+    ctx.beginPath(); ctx.arc(fx, fy, 1.6 + flick, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function drawBackground(theme, camX, w, h) {
+  const g = ctx.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, theme.skyTop);
+  g.addColorStop(1, theme.skyBottom);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, w, h);
+
+  if (theme.particle === 'clouds') drawClouds(camX, w, h);
+  else if (theme.particle === 'dusk') drawDuskScene(camX, w, h);
+  else if (theme.particle === 'retro') drawRetroScene(camX, w, h);
+  else if (theme.particle === 'snow') drawSnowScene(camX, w, h);
+  else if (theme.particle === 'lava') drawLavaScene(camX, w, h);
+  else if (theme.particle === 'space') drawSpaceScene(camX, w, h);
+  else if (theme.particle === 'aurora') drawAuroraPeakScene(camX, w, h);
+  else if (theme.particle === 'hell') drawHellScene(camX, w, h);
+}
+
+function draw() {
+  if (!currentLevel) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
+
+  const theme = getTheme(currentLevelIndex);
+  const w = canvas.width, h = canvas.height;
+
+  let camX = player.x - w / 2;
+  const maxCamX = Math.max(0, currentLevel.width - w);
+  if (camX < 0) camX = 0;
+  if (camX > maxCamX) camX = maxCamX;
+
+  const yOffset = Math.max(0, (h - DESIGN_H) / 2);
+
+  drawBackground(theme, camX, w, h);
+
+  ctx.save();
+  ctx.translate(-camX, yOffset);
+
+  currentLevel.platforms.forEach(p => {
+    ctx.fillStyle = theme.platformBody;
+    ctx.fillRect(p.x, p.y, p.w, p.h);
+    ctx.fillStyle = theme.platformTop;
+    ctx.fillRect(p.x, p.y, p.w, 4);
+  });
+
+  ctx.shadowColor = 'rgba(255,60,60,0.7)';
+  ctx.shadowBlur = 6;
+  currentLevel.spikes.forEach(s => {
+    ctx.fillStyle = '#ff4a4a';
+    ctx.beginPath();
+    ctx.moveTo(s.x, s.y + s.h);
+    ctx.lineTo(s.x + s.w / 2, s.y);
+    ctx.lineTo(s.x + s.w, s.y + s.h);
+    ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+
+  ctx.shadowColor = 'rgba(255,209,102,0.9)';
+  ctx.shadowBlur = 8;
+  ctx.fillStyle = '#ffd93d';
+  ctx.strokeStyle = '#e0a800';
+  ctx.lineWidth = 1.5;
+  coins.forEach(c => {
+    if (!c.collected) {
+      ctx.beginPath();
+      ctx.arc(c.x + 8, c.y + 8, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  });
+  ctx.shadowBlur = 0;
+
+  const d = currentLevel.door;
+  ctx.shadowColor = theme.doorGlow;
+  ctx.shadowBlur = 18;
+  ctx.fillStyle = theme.doorColor;
+  ctx.fillRect(d.x, d.y, d.w, d.h);
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(d.x + 4, d.y + d.h / 2 - 2, 6, 4);
+
+  const pet = PETS.find(p => p.id === playerData.selectedPet) || PETS[0];
+  const nowT = performance.now();
+  const cx = player.x + player.size / 2, cy = player.y + player.size / 2;
+  let ballFill, glowColor = null, glowBlur = 0;
+
+  if (pet.color === 'rainbow') {
+    ballFill = `hsl(${rainbowHue}, 85%, 60%)`;
+    glowColor = ballFill; glowBlur = 14;
+  } else if (pet.id === 'stardust') {
+    const t = (Math.sin(nowT / 400) + 1) / 2;
+    ballFill = `rgb(${Math.round(225 + 30 * t)}, ${Math.round(225 + 30 * t)}, 255)`;
+    glowColor = 'rgba(255,255,255,0.95)';
+    glowBlur = 14 + 8 * t;
+  } else if (pet.id === 'cosmic') {
+    const hue = 255 + Math.sin(nowT / 550) * 45;
+    ballFill = `hsl(${hue}, 70%, 58%)`;
+    glowColor = `hsl(${hue}, 90%, 62%)`;
+    glowBlur = 16;
+  } else if (pet.id === 'aurora') {
+    const hue = 150 + Math.sin(nowT / 500) * 40;
+    ballFill = `hsl(${hue}, 90%, 55%)`;
+    glowColor = `hsl(${hue}, 100%, 65%)`;
+    glowBlur = 16;
+  } else if (pet.id === 'phoenix') {
+    const t = (Math.sin(nowT / 200) + 1) / 2;
+    ballFill = `rgb(255, ${Math.round(80 + 100 * t)}, ${Math.round(20 * t)})`;
+    glowColor = 'rgba(255,120,30,0.9)';
+    glowBlur = 18 + 8 * t;
+  } else if (pet.id === 'galaxy') {
+    const hue = 260 + Math.sin(nowT / 450) * 50;
+    ballFill = `hsl(${hue}, 75%, 45%)`;
+    glowColor = `hsl(${hue}, 90%, 60%)`;
+    glowBlur = 16;
+  } else if (pet.id === 'voidking') {
+    const t = (Math.sin(nowT / 300) + 1) / 2;
+    ballFill = `rgb(${Math.round(20 + 30 * t)}, ${Math.round(5 + 10 * t)}, ${Math.round(40 + 60 * t)})`;
+    glowColor = 'rgba(176,107,255,0.8)';
+    glowBlur = 14 + 10 * t;
+  } else if (pet.id === 'promax') {
+    const hue = (nowT / 4) % 360;
+    ballFill = `hsl(${hue}, 100%, 60%)`;
+    glowColor = `hsl(${(hue + 180) % 360}, 100%, 65%)`;
+    glowBlur = 26 + 12 * Math.sin(nowT / 120);
+  } else {
+    ballFill = pet.color;
+  }
+
+  if (pet.id === 'promax' && !paused) {
+    ultraTrail.push({ x: cx, y: cy, born: nowT, size: player.size * (0.55 + Math.random() * 0.25) });
+  }
+  const TRAIL_LIFESPAN = 420;
+  ultraTrail = ultraTrail.filter(p => nowT - p.born < TRAIL_LIFESPAN);
+  ultraTrail.forEach((p, idx) => {
+    const age = nowT - p.born;
+    const lifeRatio = 1 - age / TRAIL_LIFESPAN;
+    if (lifeRatio <= 0) return;
+    const hue = (nowT / 3 + idx * 24) % 360;
+    ctx.save();
+    ctx.globalAlpha = lifeRatio * 0.85;
+    ctx.shadowColor = `hsl(${hue}, 100%, 65%)`;
+    ctx.shadowBlur = 14 * lifeRatio;
+    ctx.fillStyle = `hsl(${hue}, 100%, 62%)`;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, (p.size / 2) * lifeRatio, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  ctx.save();
+  if (glowColor) { ctx.shadowColor = glowColor; ctx.shadowBlur = glowBlur; }
+  ctx.fillStyle = ballFill;
+  ctx.beginPath();
+  ctx.arc(cx, cy, player.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  if (pet.id === 'stardust') {
+    for (let k = 0; k < 4; k++) {
+      const angle = nowT / 300 + k * (Math.PI / 2);
+      const dist = player.size * 0.85;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist * 0.55;
+      const tw = 0.35 + 0.65 * Math.abs(Math.sin(nowT / 150 + k));
+      ctx.fillStyle = `rgba(255,255,255,${tw})`;
+      ctx.beginPath(); ctx.arc(px, py, 1.6, 0, Math.PI * 2); ctx.fill();
+    }
+  } else if (pet.id === 'cosmic') {
+    for (let k = 0; k < 3; k++) {
+      const angle = nowT / 500 + k * ((Math.PI * 2) / 3);
+      const dist = player.size * 0.8;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      const hue = 255 + Math.sin(nowT / 550 + k) * 45;
+      ctx.fillStyle = `hsl(${hue}, 80%, 65%)`;
+      ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI * 2); ctx.fill();
+    }
+  } else if (pet.id === 'galaxy' || pet.id === 'voidking') {
+    for (let k = 0; k < 3; k++) {
+      const angle = nowT / 450 + k * ((Math.PI * 2) / 3);
+      const dist = player.size * 0.9;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      ctx.fillStyle = 'rgba(176,107,255,0.85)';
+      ctx.beginPath(); ctx.arc(px, py, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+  } else if (pet.id === 'phoenix' || pet.id === 'aurora') {
+    for (let k = 0; k < 3; k++) {
+      const angle = nowT / 260 + k * ((Math.PI * 2) / 3);
+      const dist = player.size * 0.75;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist * 0.6 + 4;
+      ctx.fillStyle = pet.id === 'phoenix' ? 'rgba(255,150,30,0.85)' : 'rgba(120,255,220,0.85)';
+      ctx.beginPath(); ctx.arc(px, py, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+  } else if (pet.id === 'promax') {
+    for (let k = 0; k < 8; k++) {
+      const angle = nowT / 90 + k * (Math.PI * 2 / 8);
+      const dist = player.size * 1.15;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      const hue = (nowT / 3 + k * 45) % 360;
+      ctx.fillStyle = `hsl(${hue}, 100%, 65%)`;
+      ctx.beginPath(); ctx.arc(px, py, 2.6, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  ctx.fillStyle = '#fff';
+  ctx.beginPath();
+  ctx.arc(player.x + player.size / 2 + (player.vx >= 0 ? 3 : -3), player.y + player.size / 3 + 1, 3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#000';
+  ctx.beginPath();
+  ctx.arc(player.x + player.size / 2 + (player.vx >= 0 ? 4 : -2), player.y + player.size / 3 + 1, 1.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+let lastTime = performance.now();
+function gameLoop(now) {
+  let dt = now - lastTime;
+  if (dt > 100) dt = 16;
+  lastTime = now;
+
+  update(dt);
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+// =====================================================================
+// ADM\u0130NL\u0130K S\u0130STEM\u0130 (gizli kod ile t\u00fcm i\u00e7eri\u011fi a\u00e7ma)
+// =====================================================================
+const ADMIN_CODE = '1837368';
+let titleTapCount = 0;
+let titleTapTimer = null;
+function registerTitleTap() {
+  titleTapCount++;
+  clearTimeout(titleTapTimer);
+  titleTapTimer = setTimeout(() => { titleTapCount = 0; }, 1500);
+  if (titleTapCount >= 5) {
+    titleTapCount = 0;
+    openAdminOverlay();
+  }
+}
+document.querySelectorAll('.neonTitle').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', registerTitleTap);
+});
+
+function openAdminOverlay() {
+  const input = document.getElementById('adminCodeInput');
+  input.value = '';
+  document.getElementById('adminOverlay').style.display = 'flex';
+  setTimeout(() => input.focus(), 60);
+}
+function closeAdminOverlay() {
+  document.getElementById('adminOverlay').style.display = 'none';
+}
+document.getElementById('adminCancelBtn').addEventListener('click', closeAdminOverlay);
+document.getElementById('adminSubmitBtn').addEventListener('click', submitAdminCode);
+document.getElementById('adminCodeInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitAdminCode(); });
+
+function submitAdminCode() {
+  const val = document.getElementById('adminCodeInput').value.trim();
+  closeAdminOverlay();
+  if (!activeProfile || !playerData) {
+    showOverlay('Giri\u015f Gerekli &#128274;', '\u00d6nce bir profille giri\u015f yapmal\u0131s\u0131n.', [{ label: 'Tamam', action: () => {} }]);
+    return;
+  }
+  if (val === ADMIN_CODE) {
+    unlockEverything();
+  } else {
+    showOverlay('Ge\u00e7ersiz Kod &#10060;', 'Girdi\u011fin kod yanl\u0131\u015f.', [{ label: 'Tamam', action: () => {} }]);
+  }
+}
+
+function unlockEverything() {
+  playerData.unlockedLevel = levels.length - 1;
+  playerData.completedLevels = levels.map((_, i) => i);
+  if (!playerData.levelStars) playerData.levelStars = {};
+  levels.forEach((_, i) => { playerData.levelStars[i] = 3; });
+  playerData.hellUnlockedLevel = hellLevels.length - 1;
+  playerData.hellCompletedLevels = hellLevels.map((_, i) => i);
+  if (!playerData.hellLevelStars) playerData.hellLevelStars = {};
+  hellLevels.forEach((_, i) => { playerData.hellLevelStars[i] = 3; });
+  playerData.ownedPets = PETS.map(p => p.id);
+  playerData.ownedFrames = AVATAR_FRAMES.map(f => f.id);
+  savePlayerData();
+  updateWalletDisplays();
+  playLevelCompleteSound();
+  showOverlay('Admin Modu Aktif &#9989;', 'T\u00fcm b\u00f6l\u00fcmler, t\u00fcm g\u00f6r\u00fcn\u00fcmler ve t\u00fcm \u00e7er\u00e7eveler hesab\u0131na a\u00e7\u0131ld\u0131!', [{ label: 'Harika! &#127881;', action: () => {} }]);
+}
+
+loadProfiles();
+if (activeProfile && profiles[activeProfile]) {
+  playerData = profiles[activeProfile];
+  updateWalletDisplays();
+  showScreen('screenMenu');
+} else {
+  renderProfileChips();
+  showScreen('screenLogin');
+}
+applyWorldClass();
+
+requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>
